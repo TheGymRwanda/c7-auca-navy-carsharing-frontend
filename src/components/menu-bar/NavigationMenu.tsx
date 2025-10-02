@@ -12,7 +12,7 @@ interface showNavgation {
 export default function NavigationMenu({ showNavigation }: showNavgation) {
   return (
     showNavigation && (
-      <nav className="absolute ml-4 mt-20 animate-[pulse_0.6s_ease-in-out_1] rounded-xl bg-gray-800 p-5 text-white">
+      <nav className="absolute ml-4 mt-20 animate-[pulse_0.6s_ease-in-out_1] rounded-xl bg-[#3e7591] p-5 text-white">
         <div className="border-b">
           <NavLink to="" className="flex gap-4 pb-2">
             <CarIcon />

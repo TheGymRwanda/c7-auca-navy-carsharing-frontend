@@ -7,7 +7,7 @@ export default function Layout() {
     <>
       <AuthContext>
         <Header />
-        <main className="bg-gray-700">
+        <main className="bg-[#265e78]">
           <Outlet />
         </main>
       </AuthContext>
