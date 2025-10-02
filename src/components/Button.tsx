@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom'
+
 type Props = {
   className?: string
-  title?: string
+  title: string
   onClick?: () => void
   disabled?: boolean
   hasBackground?: boolean
+  type?: 'button' | 'link'
+  to?: string
 }
 
 const Button = ({
@@ -12,24 +16,52 @@ const Button = ({
   onClick,
   disabled = false,
   hasBackground = false,
-}: Props) => (
-  <button
-    className={`
-    w-full rounded-full border-2 py-2 text-lg font-semibold
-    ${className}
-    ${
-      hasBackground
-        ? disabled
-          ? 'border-gray-200 bg-gray-200 text-cyan-800'
-          : 'border-white bg-white text-cyan-800 hover:border-gray-100 hover:bg-gray-100'
-        : 'border-white text-white hover:bg-white hover:text-cyan-800 hover:transition hover:delay-100'
-    }
-  `}
-    disabled={disabled}
-    onClick={onClick}
-  >
-    {title}
-  </button>
-)
+  type = 'button',
+  to = '#',
+}: Props) => {
+  switch (type) {
+    case 'link':
+      return (
+        <Link
+          to={to}
+          className={`
+            w-full rounded-full border-2 py-2 text-lg font-semibold text-center
+            ${className}
+            ${
+              hasBackground
+                ? disabled
+                  ? 'border-gray-200 bg-gray-200 text-cyan-800'
+                  : 'border-white bg-white text-cyan-800 hover:border-gray-100 hover:bg-gray-100'
+                : 'border-white text-white hover:bg-white hover:text-cyan-800 hover:transition hover:delay-100'
+            }
+          `}
+          onClick={onClick}
+        >
+          {title}
+        </Link>
+      )
+
+    default:
+      return (
+        <button
+          className={`
+            w-full rounded-full border-2 py-2 text-lg font-semibold
+            ${className}
+            ${
+              hasBackground
+                ? disabled
+                  ? 'border-gray-200 bg-gray-200 text-cyan-800'
+                  : 'border-white bg-white text-cyan-800 hover:border-gray-100 hover:bg-gray-100'
+                : 'border-white text-white hover:bg-white hover:text-cyan-800 hover:transition hover:delay-100'
+            }
+          `}
+          disabled={disabled}
+          onClick={onClick}
+        >
+          {title}
+        </button>
+      )
+  }
+}
 
 export default Button
