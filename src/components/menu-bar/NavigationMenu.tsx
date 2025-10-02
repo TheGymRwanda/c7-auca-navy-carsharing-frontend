@@ -14,26 +14,26 @@ export default function NavigationMenu({ showNavigation }: showNavgation) {
     showNavigation && (
       <nav className="absolute ml-4 mt-20 animate-[pulse_0.6s_ease-in-out_1] rounded-xl bg-[#3e7591] p-5 text-white">
         <div className="border-b">
-          <NavLink to="" className="flex gap-4 pb-2">
+          <NavLink to="book-car" className="flex gap-4 pb-2">
             <CarIcon />
             Book a Car
           </NavLink>
-          <NavLink to="" className="flex gap-4 pb-2">
+          <NavLink to="my-bookings" className="flex gap-4 pb-2">
             <DateIcon />
             My Bookings
           </NavLink>
         </div>
         <h3 className="py-4 font-bold">My cars</h3>
         <div className="border-b">
-          <NavLink to="" className="flex gap-4 pb-2">
+          <NavLink to="see-my-cars" className="flex gap-4 pb-2">
             <CarsIcon />
             See My Cars
           </NavLink>
-          <NavLink to="" className="flex gap-4 pb-2">
+          <NavLink to="my-cars-book" className="flex gap-4 pb-2">
             <ListIcon />
             My Car&apos;s Booking
           </NavLink>
-          <NavLink to="" className="flex gap-4 pb-2">
+          <NavLink to="add-new-cars" className="flex gap-4 pb-2">
             <CarPlusIcon />
             Add New Car
           </NavLink>
