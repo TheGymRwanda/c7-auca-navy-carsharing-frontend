@@ -9,7 +9,7 @@ import MyCarsBookings from './pages/MyCarsBooking'
 import SeeMyCars from './pages/SeeMyCars'
 import ManageBookings from './pages/ManageBookings'
 import AddNewCar from './pages/AddNewCar'
-
+import { AppRoutes } from './types'
 // Configure axios hooks
 // Do not delete this if you want to use the provided API hooks in `src/hooks`
 configure({
@@ -19,15 +19,16 @@ configure({
 })
 
 function App(): ReactElement {
+  const { bookCar, myBookings, seeMyCars, addNewCars, myCarsBooking } = AppRoutes
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="book-car" element={<NewBooking />} />
-        <Route path="my-bookings" element={<ManageBookings />} />
-        <Route path="see-my-cars" element={<SeeMyCars />} />
-        <Route path="my-cars-book" element={<MyCarsBookings />} />
-        <Route path="add-new-cars" element={<AddNewCar />} />
+        <Route path={bookCar} element={<NewBooking />} />
+        <Route path={myBookings} element={<ManageBookings />} />
+        <Route path={seeMyCars} element={<SeeMyCars />} />
+        <Route path={myCarsBooking} element={<MyCarsBookings />} />
+        <Route path={addNewCars} element={<AddNewCar />} />
       </Route>,
     ),
   )

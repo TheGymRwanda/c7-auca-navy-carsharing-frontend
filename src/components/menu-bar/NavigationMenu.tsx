@@ -5,35 +5,37 @@ import CarsIcon from '../../assets/CarsIcon'
 import ListIcon from '../../assets/ListIcon'
 import CarPlusIcon from '../../assets/CarPlusIcon'
 import LogoutIcon from '../../assets/LogoutIcon'
+import { AppRoutes } from '../../types'
 
 interface showNavgation {
   showNavigation: boolean
 }
 export default function NavigationMenu({ showNavigation }: showNavgation) {
+  const { bookCar, myBookings, seeMyCars, addNewCars, myCarsBooking } = AppRoutes
   return (
     showNavigation && (
       <nav className="absolute ml-4 mt-20 animate-[pulse_0.6s_ease-in-out_1] rounded-xl bg-[#3e7591] p-5 text-white">
         <div className="border-b">
-          <NavLink to="book-car" className="flex gap-4 pb-2">
+          <NavLink to={bookCar} className="flex gap-4 pb-2">
             <CarIcon />
             Book a Car
           </NavLink>
-          <NavLink to="my-bookings" className="flex gap-4 pb-2">
+          <NavLink to={myBookings} className="flex gap-4 pb-2">
             <DateIcon />
             My Bookings
           </NavLink>
         </div>
         <h3 className="py-4 font-bold">My cars</h3>
         <div className="border-b">
-          <NavLink to="see-my-cars" className="flex gap-4 pb-2">
+          <NavLink to={seeMyCars} className="flex gap-4 pb-2">
             <CarsIcon />
             See My Cars
           </NavLink>
-          <NavLink to="my-cars-book" className="flex gap-4 pb-2">
+          <NavLink to={myCarsBooking} className="flex gap-4 pb-2">
             <ListIcon />
             My Car&apos;s Booking
           </NavLink>
-          <NavLink to="add-new-cars" className="flex gap-4 pb-2">
+          <NavLink to={addNewCars} className="flex gap-4 pb-2">
             <CarPlusIcon />
             Add New Car
           </NavLink>
