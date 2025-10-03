@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Button from '../components/Button'
 // import { contextAuth } from "../context/AuthContext"
 export default function Home() {
   {
@@ -19,12 +19,12 @@ export default function Home() {
       <p className="py-12 pb-24 text-2xl">
         Start sharing your Monis <span className="block"> with the world</span>
       </p>
-      <Link
+      <Button
+        type="link"
+        title="Log In"
         to="/login"
-        className="mx-auto w-[90%] rounded-full border bg-white py-2 font-bold text-gray-800"
-      >
-        Log In
-      </Link>
+        className="text-md py-1.8 mx-auto w-[89%] rounded-full border bg-white font-lora font-bold text-gray-900"
+      />
     </div>
   )
 }
