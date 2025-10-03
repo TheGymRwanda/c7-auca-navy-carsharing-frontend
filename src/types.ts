@@ -1,7 +1,7 @@
 export enum AppRoutes {
-  bookCar = 'book-car',
-  myBookings = 'my-bookings',
-  seeMyCars = 'see-my-cars',
-  myCarsBooking = 'my-cars-booking',
-  addNewCars = 'add-new-cars',
+  bookCar = 'cars/:id/book',
+  myBookings = 'bookings/rented',
+  seeMyCars = 'cars/owned',
+  myCarsBooking = 'bookings/owned',
+  addNewCars = 'cars/new',
 }
