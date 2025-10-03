@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 // import { contextAuth } from "../context/AuthContext"
 export default function Home() {
+  {
+    /* the function below simulates logging the user in and out, it can be removed after logging in functionality is implemented */
+  }
   //   const {setLoggedIn, loggedIn} = useContext(contextAuth);
   //   function handleLogin(){
   //     setLoggedIn(prev=>!prev)
