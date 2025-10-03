@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
 import { contextAuth } from '../context/AuthContext'
 import { useContext } from 'react'
 import ErrorCar from '../assets/ErrorCar'
+import Button from '../components/Button'
 
 export default function Error() {
   const { setLoggedIn, loggedIn } = useContext(contextAuth)
@@ -23,12 +23,12 @@ export default function Error() {
           `                Please login first.`
         )}
       </p>
-      <Link
+      <Button
+        type="link"
+        title="Go Back"
         to={loggedIn ? '/' : '/login'}
-        className="mx-auto w-[90%] rounded-full border bg-white py-2 font-bold text-gray-800"
-      >
-        Go Back
-      </Link>
+        className="text-md py-1.8 font-lora mx-auto w-[89%] rounded-full border bg-white font-bold text-gray-900"
+      />
     </div>
   )
 }
