@@ -1,7 +1,12 @@
 import React from 'react'
 import CarIcon from '../assets/CarIcon'
+import Attention from '../assets/Attention.png'
+import licenseplate from '../assets/LicensePlate.png'
+
+import HorseIcon from '../assets/HorseIcon'
 import { ChevronBackIcon } from '../assets/ChevronBackIcon'
 import FuelIcon from '../assets/FuelIcon'
+
 import ProfileIcon from '../assets/ProfileIcon'
 
 interface CarDetailsProps {
@@ -26,28 +31,15 @@ const CarsDetails: React.FC<CarDetailsProps> = ({
   restrictions,
 }) => (
   <div className="flex min-h-screen flex-col items-center bg-gradient-to-b to-sky-700 text-white">
-    <div className="flex w-full items-center justify-between bg-black/70 p-4">
-      <button className="text-sm">Menu</button>
-
-      <div className="rounded-full bg-white p-2">
-        <CarIcon />
-      </div>
-
-      <div className="rounded-full bg-white p-2">
-        <ProfileIcon />
-      </div>
-    </div>
-
     <div className="mt-6 flex w-full items-center gap-2 px-6">
       <button>
         <ChevronBackIcon />
       </button>
-      <h1 className="mx-auto text-2xl font-bold">DETAILS</h1>
+      <h1 className="mx-auto mt-11 text-2xl font-bold">DETAILS</h1>
     </div>
 
-    <CarIcon />
     <div className="mt-6">
-      <img src={image} alt={name} className="h-auto w-72 rounded-lg shadow-lg" />
+      <img src={image} alt={name} className="" />
     </div>
 
     <div className="mt-6 w-full space-y-3 px-10 text-left">
@@ -64,10 +56,12 @@ const CarsDetails: React.FC<CarDetailsProps> = ({
       </div>
 
       <div className="flex items-center gap-2">
+        <img src={licenseplate} alt="" className="inline-block h-[20px] w-[18px] object-contain" />
         <span>{plate}</span>
       </div>
 
       <div className="flex items-center gap-2">
+        <HorseIcon />
         <span>{horsepower}</span>
       </div>
 
@@ -77,7 +71,12 @@ const CarsDetails: React.FC<CarDetailsProps> = ({
       </div>
 
       {restrictions && (
-        <div className="flex items-center gap-2 font-semibold text-red-300">
+        <div className="text-white-300 flex items-center gap-2 font-semibold">
+          <img
+            src={Attention}
+            alt="icon"
+            className="inline-block h-[20px] w-[18px] object-contain"
+          />
           <span>{restrictions}</span>
         </div>
       )}
