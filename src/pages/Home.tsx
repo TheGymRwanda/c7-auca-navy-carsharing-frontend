@@ -23,7 +23,8 @@ export default function Home() {
         type="link"
         title="Log In"
         to="/login"
-        className="text-md py-1.8 mx-auto w-[89%] rounded-full border bg-white font-lora font-bold text-gray-900"
+        hasBackground={true}
+        className="py-1.8 mx-auto w-[90%] rounded-full font-lora font-bold text-gray-800"
       />
     </div>
   )
