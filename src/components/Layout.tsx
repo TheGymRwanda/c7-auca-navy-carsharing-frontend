@@ -1,13 +1,16 @@
 import { Outlet } from 'react-router'
 import Header from './Header'
+import AuthContext from '../context/AuthContext'
 
 export default function Layout() {
   return (
-    <div>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-    </div>
+    <>
+      <AuthContext>
+        <Header />
+        <main className="bg-[#265e78]">
+          <Outlet />
+        </main>
+      </AuthContext>
+    </>
   )
 }
