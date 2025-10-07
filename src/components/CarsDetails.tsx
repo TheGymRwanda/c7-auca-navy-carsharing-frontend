@@ -1,87 +1,122 @@
-import React from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { fetchWithAuth } from '../utils/api'
+import { useEffect, useState } from 'react'
 import CarIcon from '../assets/CarIcon'
 import Attention from '../assets/Attention.png'
 import licenseplate from '../assets/LicensePlate.png'
-
 import HorseIcon from '../assets/HorseIcon'
 import { ChevronBackIcon } from '../assets/ChevronBackIcon'
 import FuelIcon from '../assets/FuelIcon'
-
 import ProfileIcon from '../assets/ProfileIcon'
 
-interface CarDetailsProps {
-  image: string
+interface Car {
+  id: string
   name: string
-  owner: string
+  ownerId: string
   model: string
-  plate: string
+  licensePlate: string
   horsepower: string
-  fuel: string
-  restrictions?: string
+  fuelType: string
+  state: string
+  carTypeId: string
 }
 
-const CarsDetails: React.FC<CarDetailsProps> = ({
-  image,
-  name,
-  owner,
-  model,
-  plate,
-  horsepower,
-  fuel,
-  restrictions,
-}) => (
-  <div className="flex min-h-screen flex-col items-center bg-gradient-to-b to-sky-700 text-white">
-    <div className="mt-6 flex w-full items-center gap-2 px-6">
-      <button>
-        <ChevronBackIcon />
-      </button>
-      <h1 className="mx-auto mt-11 text-2xl font-bold">DETAILS</h1>
-    </div>
+interface CarType {
+  id: string
+  imageUrl: string
+  name: string
+}
 
-    <div className="mt-6">
-      <img src={image} alt={name} className="" />
-    </div>
+export default function CarsDetails() {
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const [car, setCar] = useState<Car | null>(null)
+  const [carType, setCarType] = useState<CarType | null>(null)
+  const [loading, setLoading] = useState(true)
 
-    <div className="mt-6 w-full space-y-3 px-10 text-left">
-      <h2 className="text-lg font-semibold">{name}</h2>
+  useEffect(() => {
+    async function fetchCarDetails() {
+      try {
+        const carData = await fetchWithAuth(`/cars/${id}`)
+        setCar(carData)
 
-      <div className="flex items-center gap-2">
-        <ProfileIcon />
-        <span>{owner}</span>
+        if (carData.carTypeId) {
+          const typeData = await fetchWithAuth(`/car-types/${carData.carTypeId}`)
+          setCarType(typeData)
+        }
+      } catch (error) {
+        console.error('Error fetching car details:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCarDetails()
+  }, [id])
+
+  if (loading) return <p className="text-center mt-10 text-white">Loading car details...</p>
+  if (!car) return <p className="text-center mt-10 text-gray-300">Car not found.</p>
+
+  return (
+    <div className="flex min-h-screen flex-col items-center bg-gradient-to-b to-sky-700 text-white">
+      <div className="mt-6 flex w-full items-center gap-2 px-6">
+        <button onClick={() => navigate(-1)}>
+          <ChevronBackIcon />
+        </button>
+        <h1 className="mx-auto mt-11 text-2xl font-semibold">DETAILS</h1>
       </div>
 
-      <div className="flex items-center gap-2">
-        <CarIcon />
-        <span>{model}</span>
+      <div className="mt-6">
+        <img
+          src={carType?.imageUrl || '/placeholder-car.png'}
+          alt={car.name}
+          className="rounded-xl object-cover max-h-64"
+        />
       </div>
 
-      <div className="flex items-center gap-2">
-        <img src={licenseplate} alt="" className="inline-block h-[20px] w-[18px] object-contain" />
-        <span>{plate}</span>
-      </div>
+      <div className="mt-6 w-full space-y-3 px-10 text-left">
+        <h2 className="text-lg font-semibold">{car.name}</h2>
 
-      <div className="flex items-center gap-2">
-        <HorseIcon />
-        <span>{horsepower}</span>
-      </div>
+        <div className="flex items-center gap-2">
+          <ProfileIcon />
+          <span>{car.ownerId}</span>
+        </div>
 
-      <div className="flex items-center gap-2">
-        <FuelIcon />
-        <span>{fuel}</span>
-      </div>
+        <div className="flex items-center gap-2">
+          <CarIcon />
+          <span>{carType.name}</span>
+        </div>
 
-      {restrictions && (
-        <div className="text-white-300 flex items-center gap-2 font-semibold">
+        <div className="flex items-center gap-2">
           <img
-            src={Attention}
-            alt="icon"
+            src={licenseplate}
+            alt="License Plate"
             className="inline-block h-[20px] w-[18px] object-contain"
           />
-          <span>{restrictions}</span>
+          <span>{car.horsepower}</span>
         </div>
-      )}
-    </div>
-  </div>
-)
 
-export default CarsDetails
+        <div className="flex items-center gap-2">
+          <HorseIcon />
+          <span>{car.horsepower}</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <FuelIcon />
+          <span>{car.fuelType}</span>
+        </div>
+
+        {car.state && (
+          <div className="flex items-center gap-2 font-semibold text-red-300">
+            <img
+              src={Attention}
+              alt="Attention"
+              className="inline-block h-[20px] w-[18px] object-contain"
+            />
+            <span>{car.state}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}

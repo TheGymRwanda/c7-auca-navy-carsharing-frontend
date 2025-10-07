@@ -4,9 +4,9 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      fontFamily:{
-        lora : ["Lora", "sans-serif"]
-      }
+      fontFamily: {
+        lora: ['Lora', 'sans-serif'],
+      },
     },
   },
   plugins: [],
