@@ -6,6 +6,9 @@ module.exports = {
     extend: {
       fontFamily:{
         lora : ["Lora", "sans-serif"]
+      },
+      colors:{
+        "nav-menu":"rgb(62 117 145)"
       }
     },
   },
