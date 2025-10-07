@@ -27,7 +27,8 @@ export default function Error() {
         type="link"
         title="Go Back"
         to={loggedIn ? '/' : '/login'}
-        className="text-md py-1.8 font-lora mx-auto w-[89%] rounded-full border bg-white font-bold text-gray-900"
+        hasBackground={true}
+        className="text-md py-1.8 font-lora mx-auto w-[89%] rounded-full border font-bold text-gray-900"
       />
     </div>
   )
