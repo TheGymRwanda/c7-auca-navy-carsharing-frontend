@@ -1,6 +1,6 @@
 const API_BASE = 'https://carsharing-backend-production.up.railway.app'
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE3LCJpYXQiOjE3NTk4NDMwOTQsImV4cCI6MTc1OTkyOTQ5NH0.7owlG8MPn1XM8Y6sRxO86noi73nUdY6XDegh8ogrblk'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE3LCJpYXQiOjE3NTk5MzMzODIsImV4cCI6MTc2MDAxOTc4Mn0.Jsx7lY1NsaApbCUZVEbeGfXUw188IQia1J78ncz3tJs'
 
 export async function fetchWithAuth(endpoint: string, options: RequestInit = {}) {
   const headers = {

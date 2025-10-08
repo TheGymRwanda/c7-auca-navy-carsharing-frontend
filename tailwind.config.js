@@ -7,7 +7,7 @@ module.exports = {
         lora: ['Lora', 'sans-serif'],
       },
       colors: {
-        "nav-menu": "rgb(62 117 145)",
+        'nav-menu': 'rgb(62 117 145)',
       },
     },
   },

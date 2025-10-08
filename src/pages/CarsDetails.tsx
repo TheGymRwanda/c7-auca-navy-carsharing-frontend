@@ -107,7 +107,7 @@ export default function CarsDetails() {
         </div>
 
         {car.state && (
-          <div className="flex items-center gap-2 font-semibold text-red-300">
+          <div className="text-white-300 flex items-center gap-2 font-semibold">
             <img
               src={Attention}
               alt="Attention"
