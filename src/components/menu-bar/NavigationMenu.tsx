@@ -7,8 +7,10 @@ import CarPlusIcon from '../../assets/CarPlusIcon'
 import LogoutIcon from '../../assets/LogoutIcon'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import { AppRoutes } from '../../types'
 
 export default function NavigationMenu() {
+  const { bookCar, myBookings, seeMyCars, addNewCars, myCarsBooking } = AppRoutes
   const [showNavgation, setShowNavigation] = useState(false)
   function handleShowNavMenu() {
     setShowNavigation(prev => !prev)
@@ -33,7 +35,7 @@ export default function NavigationMenu() {
           leaveFrom="transform opacity-100 scale-200"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute mt-10 w-56 origin-top-right  divide-y divide-gray-100 rounded-md bg-nav-menu px-4 py-2 shadow-lg ring-1 ring-black/5 focus:outline-none">
+          <Menu.Items className="bg-nav-menu absolute mt-10 w-56  origin-top-right divide-y divide-gray-100 rounded-md px-4 py-2 shadow-lg ring-1 ring-black/5 focus:outline-none">
             <div className="border-b p-1">
               <Menu.Item>
                 {({ active }) => (
@@ -42,7 +44,7 @@ export default function NavigationMenu() {
                       active ? 'bg-violet-500 text-white' : 'text-gray-900'
                     } group flex w-full items-center gap-4 rounded-md p-2 text-white`}
                     onClick={handleShowNavMenu}
-                    to=""
+                    to={bookCar}
                   >
                     <CarsIcon />
                     Book a Car
@@ -56,7 +58,7 @@ export default function NavigationMenu() {
                       active ? 'bg-violet-500 text-white' : 'text-gray-900'
                     } group flex w-full items-center gap-4 rounded-md p-2 pb-5 text-white`}
                     onClick={handleShowNavMenu}
-                    to=""
+                    to={myBookings}
                   >
                     <DateIcon />
                     My Bookings
@@ -73,7 +75,7 @@ export default function NavigationMenu() {
                       active ? 'bg-violet-500 text-white' : 'text-gray-900'
                     } group flex w-full items-center gap-4 rounded-md p-2 text-white`}
                     onClick={handleShowNavMenu}
-                    to=""
+                    to={seeMyCars}
                   >
                     <CarIcon />
                     See My Cars
@@ -87,7 +89,7 @@ export default function NavigationMenu() {
                       active ? 'bg-violet-500 text-white' : 'text-gray-900'
                     } group flex w-full items-center gap-4 rounded-md p-2 text-white`}
                     onClick={handleShowNavMenu}
-                    to=""
+                    to={myCarsBooking}
                   >
                     <ListIcon />
                     My Car&apos;s Booking
@@ -102,7 +104,7 @@ export default function NavigationMenu() {
                         active ? 'bg-violet-500 text-white' : 'text-gray-900'
                       } pb- group flex w-full items-center gap-4 rounded-md p-2 text-white`}
                       onClick={handleShowNavMenu}
-                      to=""
+                      to={addNewCars}
                     >
                       <CarPlusIcon />
                       Add New Car
@@ -118,7 +120,7 @@ export default function NavigationMenu() {
                         active ? 'bg-violet-500 text-white' : 'text-gray-900'
                       } group flex w-full items-center gap-4 rounded-md p-2 text-white`}
                       onClick={handleShowNavMenu}
-                      to=""
+                      to="/"
                     >
                       <LogoutIcon />
                       Logout

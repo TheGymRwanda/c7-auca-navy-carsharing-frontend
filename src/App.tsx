@@ -15,6 +15,7 @@ configure({
 })
 
 function App(): ReactElement {
+  const { bookCar, myBookings, seeMyCars, addNewCars, myCarsBooking } = AppRoutes
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
