@@ -1,4 +1,5 @@
 import { ReactElement } from 'react'
+import CarsDetails from './pages/CarsDetails'
 import { configure } from 'axios-hooks'
 import { createRoutesFromElements, Route, RouterProvider } from 'react-router'
 import { createBrowserRouter } from 'react-router-dom'
@@ -13,7 +14,6 @@ import { AppRoutes } from './types'
 import Error from './pages/Error'
 
 // Configure axios hooks
-// Do not delete this if you want to use the provided API hooks in `src/hooks`
 configure({
   defaultOptions: {
     autoCancel: false,
@@ -26,6 +26,9 @@ function App(): ReactElement {
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="/cars/:id" element={<CarsDetails />} />
+
+        <Route index element={<Home />} />
         <Route path={bookCar} element={<NewBooking />} />
         <Route path={myBookings} element={<ManageBookings />} />
         <Route path={seeMyCars} element={<SeeMyCars />} />
@@ -35,6 +38,7 @@ function App(): ReactElement {
       </Route>,
     ),
   )
+
   return <RouterProvider router={router} />
 }
 
