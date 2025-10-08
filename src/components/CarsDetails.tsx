@@ -54,8 +54,8 @@ export default function CarsDetails() {
     fetchCarDetails()
   }, [id])
 
-  if (loading) return <p className="text-center mt-10 text-white">Loading car details...</p>
-  if (!car) return <p className="text-center mt-10 text-gray-300">Car not found.</p>
+  if (loading) return <p className="mt-10 text-center text-white">Loading car details...</p>
+  if (!car) return <p className="mt-10 text-center text-gray-300">Car not found.</p>
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-gradient-to-b to-sky-700 text-white">
@@ -70,7 +70,7 @@ export default function CarsDetails() {
         <img
           src={carType?.imageUrl || '/placeholder-car.png'}
           alt={car.name}
-          className="rounded-xl object-cover max-h-64"
+          className="max-h-64 rounded-xl object-cover"
         />
       </div>
 

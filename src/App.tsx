@@ -25,11 +25,7 @@ function App(): ReactElement {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
-
-        
         <Route index element={<Home />} />
-
-        
         <Route path="/cars/:id" element={<CarsDetails />} />
 
         <Route index element={<Home />} />
@@ -39,7 +35,6 @@ function App(): ReactElement {
         <Route path={myCarsBooking} element={<MyCarsBookings />} />
         <Route path={addNewCars} element={<AddNewCar />} />
         <Route path="/*" element={<Error />} />
-
       </Route>,
     ),
   )
