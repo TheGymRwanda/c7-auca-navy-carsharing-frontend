@@ -60,10 +60,10 @@ export default function CarsDetails() {
   return (
     <div className="flex min-h-screen flex-col items-center bg-gradient-to-b to-sky-700 text-white">
       <div className="mt-6 flex w-full items-center gap-2 px-6">
-        <button onClick={() => navigate(-1)} className='mt-14'>
+        <button onClick={() => navigate(-1)} className="mt-14">
           <ChevronBackIcon />
         </button>
-        <h1 className="mx-auto mt-14 text-2xl font-lora">DETAILS</h1>
+        <h1 className="mx-auto mt-14 font-lora text-2xl">DETAILS</h1>
       </div>
 
       <div className="mt-6">
@@ -75,7 +75,7 @@ export default function CarsDetails() {
       </div>
 
       <div className="mt-6 w-full space-y-3 px-10 text-left">
-        <h2 className="text-lg font-lora">{car.name}</h2>
+        <h2 className="font-lora text-lg">{car.name}</h2>
 
         <div className="flex items-center gap-2">
           <ProfileIcon />
