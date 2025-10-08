@@ -35,7 +35,7 @@ export default function NavigationMenu() {
           leaveFrom="transform opacity-100 scale-200"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="bg-nav-menu absolute mt-10 w-56  origin-top-right divide-y divide-gray-100 rounded-md px-4 py-2 shadow-lg ring-1 ring-black/5 focus:outline-none">
+          <Menu.Items className="absolute mt-10 w-56 origin-top-right  divide-y divide-gray-100 rounded-md bg-nav-menu px-4 py-2 shadow-lg ring-1 ring-black/5 focus:outline-none">
             <div className="border-b p-1">
               <Menu.Item>
                 {({ active }) => (
