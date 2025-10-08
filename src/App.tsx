@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import CarsDetails from './components/CarsDetails'
+import CarsDetails from './pages/CarsDetails'
 import { configure } from 'axios-hooks'
 import { createRoutesFromElements, Route, RouterProvider } from 'react-router'
 import { createBrowserRouter } from 'react-router-dom'
