@@ -2,7 +2,14 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        lora: ['Lora', 'sans-serif'],
+      },
+      colors: {
+        'nav-menu': 'rgb(62 117 145)',
+      },
+    },
   },
   plugins: [],
 }
