@@ -14,6 +14,7 @@ import SeeMyCars from './pages/SeeMyCars'
 import ManageBookings from './pages/ManageBookings'
 import AddNewCar from './pages/AddNewCar'
 import Error from './pages/Error'
+import ShowAllCars from './pages/ShowAllCars'
 
 // Configure axios hooks
 configure({
@@ -33,6 +34,7 @@ function App(): ReactElement {
         <Route path={AppRoutes.seeMyCars} element={<SeeMyCars />} />
         <Route path={AppRoutes.myCarsBooking} element={<MyCarsBookings />} />
         <Route path={AppRoutes.addNewCars} element={<AddNewCar />} />
+        <Route path={AppRoutes.showAllCars} element={<ShowAllCars />} />
         <Route path={AppRoutes.notFoundPage} element={<Error />} />
       </Route>,
     ),
