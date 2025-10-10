@@ -8,24 +8,7 @@ import HorseIcon from '../assets/HorseIcon'
 import { ChevronBackIcon } from '../assets/ChevronBackIcon'
 import FuelIcon from '../assets/FuelIcon'
 import ProfileIcon from '../assets/ProfileIcon'
-
-interface Car {
-  id: string
-  name: string
-  ownerId: string
-  model: string
-  licensePlate: string
-  horsepower: string
-  fuelType: string
-  state: string
-  carTypeId: string
-}
-
-interface CarType {
-  id: string
-  imageUrl: string
-  name: string
-}
+import { Car, CarType } from '../utils/types'
 
 export default function CarsDetails() {
   const { id } = useParams<{ id: string }>()
@@ -35,19 +18,22 @@ export default function CarsDetails() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const mounted = true
     async function fetchCarDetails() {
       try {
-        const carData = await fetchWithAuth(`/cars/${id}`)
+        const carData = (await fetchWithAuth(`/cars/${id}`)) as Car
+        if (!mounted) return
         setCar(carData)
 
-        if (carData.carTypeId) {
-          const typeData = await fetchWithAuth(`/car-types/${carData.carTypeId}`)
+        if (carData?.carTypeId) {
+          const typeData = (await fetchWithAuth(`/car-types/${carData.carTypeId}`)) as CarType
+          if (!mounted) return
           setCarType(typeData)
         }
       } catch (error) {
         console.error('Error fetching car details:', error)
       } finally {
-        setLoading(false)
+        if (mounted) setLoading(false)
       }
     }
 
@@ -57,6 +43,7 @@ export default function CarsDetails() {
   if (loading) return <p className="mt-10 text-center text-white">Loading car details...</p>
   if (!car) return <p className="mt-10 text-center text-gray-300">Car not found.</p>
 
+  if (!carType) return <p className="mt-10 text-center text-gray-300">Car type not found.</p>
   return (
     <div className="flex min-h-screen flex-col items-center bg-gradient-to-b to-sky-700 text-white">
       <div className="mt-6 flex w-full items-center gap-2 px-6">
@@ -68,7 +55,7 @@ export default function CarsDetails() {
 
       <div className="mt-6">
         <img
-          src={carType?.imageUrl || '/placeholder-car.png'}
+          src={carType.imageUrl || '/placeholder-car.png'}
           alt={car.name}
           className="max-h-64 rounded-xl object-cover"
         />
@@ -93,7 +80,7 @@ export default function CarsDetails() {
             alt="License Plate"
             className="inline-block h-[20px] w-[18px] object-contain"
           />
-          <span>{car.horsepower}</span>
+          <span>{car.licensePlate}</span>
         </div>
 
         <div className="flex items-center gap-2">
@@ -107,7 +94,7 @@ export default function CarsDetails() {
         </div>
 
         {car.state && (
-          <div className="text-white-300 flex items-center gap-2 font-semibold">
+          <div className="flex items-center gap-2 font-lora text-white">
             <img
               src={Attention}
               alt="Attention"
