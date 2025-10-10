@@ -6,7 +6,7 @@ export enum AppRoutes {
   myBookings = 'bookings/rented',
   seeMyCars = 'cars/owned',
   myCarsBooking = 'bookings/owned',
-  allCars = 'cars/all',
+  showAllCars = 'cars/all',
   addNewCars = 'cars/new',
   notFoundPage = '/*',
   home = '/',

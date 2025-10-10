@@ -15,7 +15,6 @@ import ManageBookings from './pages/ManageBookings'
 import AddNewCar from './pages/AddNewCar'
 import Error from './pages/Error'
 import ShowAllCars from './pages/ShowAllCars'
-import { AppRoutes } from './types'
 
 // Configure axios hooks
 configure({
