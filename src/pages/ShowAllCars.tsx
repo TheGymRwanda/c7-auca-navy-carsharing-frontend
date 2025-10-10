@@ -59,6 +59,7 @@ export default function ShowAllCars() {
         {carsList.map(car => (
           <AllCarsCard
             key={car.id}
+            id={car.id}
             imageUrl={car.typeData.imageUrl}
             name={car.name}
             owner={car.ownerData.name}
