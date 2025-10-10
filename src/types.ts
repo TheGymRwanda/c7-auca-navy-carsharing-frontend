@@ -4,4 +4,5 @@ export enum AppRoutes {
   seeMyCars = 'cars/owned',
   myCarsBooking = 'bookings/owned',
   addNewCars = 'cars/new',
+  allCars = 'cars/all',
 }

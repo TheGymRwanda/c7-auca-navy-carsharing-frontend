@@ -10,6 +10,7 @@ import MyCarsBookings from './pages/MyCarsBooking'
 import SeeMyCars from './pages/SeeMyCars'
 import ManageBookings from './pages/ManageBookings'
 import AddNewCar from './pages/AddNewCar'
+import ShowAllCars from './pages/ShowAllCars'
 import { AppRoutes } from './types'
 import Error from './pages/Error'
 
@@ -21,7 +22,7 @@ configure({
 })
 
 function App(): ReactElement {
-  const { bookCar, myBookings, seeMyCars, addNewCars, myCarsBooking } = AppRoutes
+  const { bookCar, myBookings, seeMyCars, addNewCars, myCarsBooking, allCars } = AppRoutes
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
@@ -34,6 +35,7 @@ function App(): ReactElement {
         <Route path={seeMyCars} element={<SeeMyCars />} />
         <Route path={myCarsBooking} element={<MyCarsBookings />} />
         <Route path={addNewCars} element={<AddNewCar />} />
+        <Route path={allCars} element={<ShowAllCars />} />
         <Route path="/*" element={<Error />} />
       </Route>,
     ),
