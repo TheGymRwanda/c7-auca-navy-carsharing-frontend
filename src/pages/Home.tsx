@@ -4,11 +4,7 @@ import Button from '@/components/Button'
 import { AppRoutes } from '@/types/AppRoutesType'
 
 export default function Home() {
-  const { setLoggedIn } = useContext(AuthContext)
-
-  function handleLogin() {
-    setLoggedIn(prev => !prev)
-  }
+  const { login } = useContext(AuthContext)
 
   return (
     <div className="flex min-h-screen flex-col gap-8 py-20 text-center font-lora text-gray-100">
@@ -25,7 +21,7 @@ export default function Home() {
         to={AppRoutes.login}
         hasBackground={true}
         className="py-1.8 mx-auto w-[90%] rounded-full font-lora font-bold text-gray-800"
-        onClick={handleLogin}
+        onClick={login}
       />
     </div>
   )

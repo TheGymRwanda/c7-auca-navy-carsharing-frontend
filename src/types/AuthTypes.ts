@@ -1,6 +1,5 @@
-import { type Dispatch, type SetStateAction } from 'react'
-
-export type AuthValues = {
+export type AuthContextType = {
   loggedIn: boolean
-  setLoggedIn: Dispatch<SetStateAction<boolean>>
+  login: () => void
+  logout: () => void
 }

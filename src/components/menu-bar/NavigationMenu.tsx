@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useContext } from 'react'
 
 import { Menu } from '@headlessui/react'
 
 import { AppRoutes } from '@/types/AppRoutesType'
+import { AuthContext } from '@/context/LoggedInAuthContext'
 import CarIcon from '@/assets/CarIcon'
 import DateIcon from '@/assets/DateIcon'
 import CarsIcon from '@/assets/CarsIcon'
@@ -14,6 +16,8 @@ import NavigationMenuTransition from '@/components/menu-bar/NavigationMenuTransi
 
 export default function NavigationMenu() {
   const [showNavgation, setShowNavigation] = useState(false)
+
+  const { logout } = useContext(AuthContext)
 
   function handleShowNavMenu() {
     setShowNavigation(prev => !prev)
@@ -74,7 +78,7 @@ export default function NavigationMenu() {
 
               <div className="border-t p-1">
                 <MenuItem
-                  handleShowNavMenu={handleShowNavMenu}
+                  handleShowNavMenu={logout}
                   route={AppRoutes.home}
                   icon={<LogoutIcon />}
                   name="Logout"
