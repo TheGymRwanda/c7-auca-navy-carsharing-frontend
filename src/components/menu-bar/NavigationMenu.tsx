@@ -2,15 +2,15 @@ import { useState } from 'react'
 
 import { Menu } from '@headlessui/react'
 
-import { AppRoutes } from '../../types'
-import CarIcon from '../../assets/CarIcon'
-import DateIcon from '../../assets/DateIcon'
-import CarsIcon from '../../assets/CarsIcon'
-import ListIcon from '../../assets/ListIcon'
-import CarPlusIcon from '../../assets/CarPlusIcon'
-import LogoutIcon from '../../assets/LogoutIcon'
-import MenuItem from './MenuItem'
-import NavigationMenuTransition from './NavigationMenuTransition'
+import { AppRoutes } from '@/types/AppRoutesType'
+import CarIcon from '@/assets/CarIcon'
+import DateIcon from '@/assets/DateIcon'
+import CarsIcon from '@/assets/CarsIcon'
+import ListIcon from '@/assets/ListIcon'
+import CarPlusIcon from '@/assets/CarPlusIcon'
+import LogoutIcon from '@/assets/LogoutIcon'
+import MenuItem from '@/components/menu-bar/MenuItem'
+import NavigationMenuTransition from '@/components/menu-bar/NavigationMenuTransition'
 
 export default function NavigationMenu() {
   const [showNavgation, setShowNavigation] = useState(false)

@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 
-import { contextAuth } from '../context/AuthContext'
-import Logo from '../assets/Logo'
-import ProfileIcon from '../assets/ProfileIcon'
-import NavigationMenu from './menu-bar/NavigationMenu'
+import { AuthContext } from '@/context/LoggedInAuthContext'
+import Logo from '@/assets/Logo'
+import ProfileIcon from '@/assets/ProfileIcon'
+import NavigationMenu from '@/components/menu-bar/NavigationMenu'
 
 function AuthenticatedHeader() {
   return (
@@ -33,7 +33,7 @@ function UnauthenticatedHeader() {
   )
 }
 export default function Header() {
-  const { loggedIn } = useContext(contextAuth)
+  const { loggedIn } = useContext(AuthContext)
 
   return <>{loggedIn ? <AuthenticatedHeader /> : <UnauthenticatedHeader />}</>
 }

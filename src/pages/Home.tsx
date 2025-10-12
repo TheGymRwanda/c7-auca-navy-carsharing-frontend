@@ -1,19 +1,17 @@
-import Button from '../components/Button'
-import { AppRoutes } from '../types'
-// import { contextAuth } from "../context/AuthContext"
+import { useContext } from 'react'
+import { AuthContext } from '@/context/LoggedInAuthContext'
+import Button from '@/components/Button'
+import { AppRoutes } from '@/types/AppRoutesType'
 
 export default function Home() {
-  {
-    /* the function below simulates logging the user in and out, it can be removed after logging in functionality is implemented */
+  const { setLoggedIn } = useContext(AuthContext)
+
+  function handleLogin() {
+    setLoggedIn(prev => !prev)
   }
-  //   const {setLoggedIn, loggedIn} = useContext(contextAuth);
-  //   function handleLogin(){
-  //     setLoggedIn(prev=>!prev)
-  //   }
+
   return (
     <div className="flex min-h-screen flex-col gap-8 py-20 text-center font-lora text-gray-100">
-      {/* the button below simulates logging the user in and out, it can be removed after logging in functionality is implemented */}
-      {/* <button onClick={handleLogin}>{loggedIn? "Logout":"Login"}</button> */}
       <h1 className="pb-16 pt-14 text-5xl">
         <span className="block">MONI</span>
         <span className="block font-lora italic">share</span>
@@ -27,6 +25,7 @@ export default function Home() {
         to={AppRoutes.login}
         hasBackground={true}
         className="py-1.8 mx-auto w-[90%] rounded-full font-lora font-bold text-gray-800"
+        onClick={handleLogin}
       />
     </div>
   )

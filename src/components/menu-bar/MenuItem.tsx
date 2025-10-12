@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { Menu } from '@headlessui/react'
 
-import { MenuItemProp } from '../../types'
+import { MenuItemProp } from '@/types/MenuTypes'
 import PropTypes from 'prop-types'
 
 export default function MenuItem({ handleShowNavMenu, route, icon, name }: MenuItemProp) {
