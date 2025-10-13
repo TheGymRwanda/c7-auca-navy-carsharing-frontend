@@ -23,7 +23,7 @@ export default function NavigationMenu() {
         </MenuButton>
 
         <NavigationMenuTransition>
-          <MenuItems className="absolute mt-10 w-56 origin-top-right divide-gray-100 rounded-md bg-nav-menu px-4 py-2 shadow-lg ring-1 ring-black/5 focus:outline-none">
+          <MenuItems className="absolute mt-10 w-56 origin-top-right divide-gray-100 rounded-md bg-nav-menu px-4 py-2 text-white shadow-lg ring-1 ring-black/5 focus:outline-none">
             <MenuLink route={AppRoutes.bookCar} icon={<CarIcon />} name="Book a Car" />
             <MenuLink route={AppRoutes.myBookings} icon={<DateIcon />} name="My Bookings" />
             <h3 className="mt-3 border-t p-2.5 font-bold">My cars</h3>

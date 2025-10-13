@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         'nav-menu': 'rgb(62 117 145)',
         'primary-color': '#265e78',
+        'header-color': 'rgb(31, 41, 55)',
       },
     },
   },
