@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { AuthContext } from '@/context/LoggedInAuthContext'
 import { AppRoutes } from '@/types/AppRoutesType'
 import ErrorCar from '@/assets/ErrorCar'
-import Button from '@/components/Button'
+import Button from '@/components/ui/Button'
 
 export default function Error() {
   const { loggedIn } = useContext(AuthContext)

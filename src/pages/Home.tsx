@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { AuthContext } from '@/context/LoggedInAuthContext'
-import Button from '@/components/Button'
+import Button from '@/components/ui/Button'
 import { AppRoutes } from '@/types/AppRoutesType'
 
 export default function Home() {
