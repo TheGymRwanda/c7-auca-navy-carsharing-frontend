@@ -1,6 +1,5 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, PropsWithChildren } from 'react'
 
-import { BaseComponentsProp } from '@/types/base'
 import { AuthContextType } from '@/types/AuthTypes'
 
 export const AuthContext = createContext<AuthContextType>({
@@ -9,7 +8,7 @@ export const AuthContext = createContext<AuthContextType>({
   logout: () => {},
 })
 
-export default function LoggedInAuthContext({ children }: BaseComponentsProp) {
+export default function LoggedInAuthContext({ children }: PropsWithChildren) {
   const [loggedIn, setLoggedIn] = useState(false)
 
   const login = () => setLoggedIn(true)

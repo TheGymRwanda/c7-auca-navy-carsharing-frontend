@@ -1,7 +1,7 @@
 import { IconProps } from '@/types/IconsType'
 
 // eslint-disable-next-line max-lines-per-function
-export default function Logo({ className, width = '42', height = '42' }: IconProps) {
+export default function Logo({ className, width = '90', height = '42' }: IconProps) {
   return (
     <svg
       width={width}

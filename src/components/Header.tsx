@@ -8,16 +8,18 @@ import NavigationMenu from '@/components/menu-bar/NavigationMenu'
 function AuthenticatedHeader() {
   return (
     <>
-      <header className="absolute flex w-full items-center justify-between  rounded-b-xl bg-gray-800 px-4 py-3 text-white">
+      <header className="absolute flex w-full items-center justify-between rounded-b-xl bg-header-color px-4 py-3">
         <div>
           <NavigationMenu />
         </div>
         <div>
-          <ProfileIcon />
+          <ProfileIcon className="text-white" />
         </div>
       </header>
-      <div className="absolute inset-x-0 top-0 mx-auto w-[20%] rounded-b-full bg-gray-800 py-4  pb-5">
-        <Logo className="w-[99%]" />
+      <div className="relative flex justify-center">
+        <div className="absolute rounded-b-full bg-header-color py-5">
+          <Logo />
+        </div>
       </div>
     </>
   )
@@ -25,9 +27,9 @@ function AuthenticatedHeader() {
 
 function UnauthenticatedHeader() {
   return (
-    <header className="absolute flex w-full items-center justify-center rounded-b-xl bg-gray-800 px-4 py-7 text-white">
-      <div className="absolute mx-auto w-[20%] rounded-b-full bg-gray-800 py-8 pb-5">
-        <Logo className="w-[99%]" />
+    <header className="absolute flex w-full items-center justify-center rounded-b-xl bg-header-color px-4 py-7">
+      <div className="absolute rounded-b-full bg-header-color py-6">
+        <Logo />
       </div>
     </header>
   )
