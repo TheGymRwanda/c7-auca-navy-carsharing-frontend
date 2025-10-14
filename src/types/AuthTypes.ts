@@ -1,5 +1,5 @@
 export type AuthContextType = {
   loggedIn: boolean
-  login: () => void
-  logout: () => void
+  login?: () => void
+  logout?: () => void
 }

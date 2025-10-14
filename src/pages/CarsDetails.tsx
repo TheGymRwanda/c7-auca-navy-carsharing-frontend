@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { fetchWithAuth } from '../utils/api'
+import { fetchWithAuth } from '../util/auth'
 import { useEffect, useState } from 'react'
 import CarIcon from '../assets/CarIcon'
 import Attention from '../assets/Attention.png'
@@ -8,7 +8,7 @@ import HorseIcon from '../assets/HorseIcon'
 import { ChevronBackIcon } from '../assets/ChevronBackIcon'
 import FuelIcon from '../assets/FuelIcon'
 import ProfileIcon from '../assets/ProfileIcon'
-import { Car, CarType } from '../utils/types'
+import { Car, CarType } from '../types/CarTypes'
 
 export default function CarsDetails() {
   const { id } = useParams<{ id: string }>()
