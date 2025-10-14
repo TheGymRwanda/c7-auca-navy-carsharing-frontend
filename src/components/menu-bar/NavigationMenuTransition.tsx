@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Transition } from '@headlessui/react'
 
-import { BaseComponentsProp } from '../../types'
+import { BaseComponentsProp } from '@/types/base'
 
 export default function NavigationMenuTransition({ children }: BaseComponentsProp) {
   return (

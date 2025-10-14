@@ -1,8 +1,15 @@
-import { ReactElement } from 'react'
+import { IconProps } from '@/types/IconsType'
 
-export default function ErrorIcon(): ReactElement {
+export default function ErrorIcon({ className, width = '82', height = '82' }: IconProps) {
   return (
-    <svg width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 82 82"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
       <circle cx="41" cy="41" r="40" stroke="#059669" strokeWidth="2" />
       <path
         d="M37.8505 26.4519L19.2859 36.3984M23.5949 22.1429L33.5415 40.7075"

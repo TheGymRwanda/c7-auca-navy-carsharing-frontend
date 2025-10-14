@@ -1,13 +1,10 @@
-import { ReactElement } from 'react'
+import { IconProps } from '@/types/IconsType'
 
-interface LockIconProps {
-  className?: string
-}
-export default function LockIcon({ className }: LockIconProps): ReactElement {
+export default function LockIcon({ className, width = '13', height = '16' }: IconProps) {
   return (
     <svg
-      width="13"
-      height="16"
+      width={width}
+      height={height}
       viewBox="0 0 13 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
