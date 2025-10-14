@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import useAllCars from '../hooks/useAllCars'
-import { ChevronBackIcon } from '../assets/ChevronBackIcon'
-import AllCarsCard from '../components/AllCarsCard'
+import useAllCars from '@/hooks/useAllCars'
+import { ChevronBackIcon } from '@/assets/ChevronBackIcon'
+import AllCarsCard from '@/components/AllCarsCard'
 
 export default function ShowAllCars() {
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ export default function ShowAllCars() {
         <h1 className="mx-auto font-lora text-2xl">ALL CARS</h1>
       </div>
 
-      <div className="flex flex-col gap-[16px] p-[16px]">
+      <div className="flex flex-col gap-4 p-4">
         {carsList.map(car => (
           <AllCarsCard
             key={car.id}

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import useCars from './useCars'
-import { CarWithDetails } from '../util/types'
-import { apiUrl } from '../util/apiUrl'
-import { getAuthToken } from '../util/auth'
+import { CarWithDetails } from '@/util/types'
+import { apiUrl } from '@/util/apiUrl'
+import { getAuthToken } from '@/util/auth'
 
 export default function useFullCars() {
   const [{ data: carsData, loading, error }] = useCars()
