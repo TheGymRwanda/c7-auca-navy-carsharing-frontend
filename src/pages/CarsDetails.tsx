@@ -50,7 +50,7 @@ export default function CarsDetails() {
         <button onClick={() => navigate(-1)} className="mt-14">
           <ChevronBackIcon />
         </button>
-        <h1 className="font-lora mx-auto mt-14 text-2xl">DETAILS</h1>
+        <h1 className="mx-auto mt-14 font-lora text-2xl">DETAILS</h1>
       </div>
 
       <div className="mt-6">
@@ -94,7 +94,7 @@ export default function CarsDetails() {
         </div>
 
         {car.state && (
-          <div className="font-lora flex items-center gap-2 text-white">
+          <div className="flex items-center gap-2 font-lora text-white">
             <img
               src={Attention}
               alt="Attention"
