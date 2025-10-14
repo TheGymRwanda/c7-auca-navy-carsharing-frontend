@@ -12,7 +12,7 @@ const Button = ({
   className = '',
 }: ButtonProps) => {
   const baseClasses =
-    'w-4/5 rounded-full border-2 py-2 text-lg font-semibold text-center transition-all duration-300'
+    'w-4/5 mx-auto rounded-full border-2 py-2 text-lg font-semibold text-center transition-all duration-300'
 
   const variantClasses = clsx({
     'border-white bg-white text-cyan-800 hover:bg-gray-200 hover:border-gray-100':
