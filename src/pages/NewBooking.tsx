@@ -4,7 +4,7 @@ import PageHeading from '@/components/ui/PageHeading'
 export default function NewBooking() {
   return (
     <PageContainer>
-      <PageHeading name="New Bookings" />
+      <PageHeading name="Available Cars" />
     </PageContainer>
   )
 }

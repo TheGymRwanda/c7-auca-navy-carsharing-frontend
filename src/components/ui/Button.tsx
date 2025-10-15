@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import clsx from 'clsx'
 
 import { ButtonProps } from '@/types/ButtonTypes'
@@ -24,9 +24,9 @@ const Button = ({
 
   if (to) {
     return (
-      <Link to={to} onClick={onClick} className={clsx(baseClasses, variantClasses, className)}>
+      <NavLink to={to} onClick={onClick} className={clsx(baseClasses, variantClasses, className)}>
         {title}
-      </Link>
+      </NavLink>
     )
   }
 
