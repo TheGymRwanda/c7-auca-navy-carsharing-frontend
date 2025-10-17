@@ -4,16 +4,18 @@ import { configure } from 'axios-hooks'
 import { createRoutesFromElements, Route, RouterProvider } from 'react-router'
 import { createBrowserRouter } from 'react-router-dom'
 
-import { AppRoutes } from './types'
-import Layout from './components/Layout'
-import Home from './pages/Home'
-import CarsDetails from './pages/CarsDetails'
-import NewBooking from './pages/NewBooking'
-import MyCarsBookings from './pages/MyCarsBooking'
-import SeeMyCars from './pages/SeeMyCars'
-import ManageBookings from './pages/ManageBookings'
-import AddNewCar from './pages/AddNewCar'
-import Error from './pages/Error'
+import { AppRoutes } from '@/types/AppRoutesType'
+import Layout from '@/components/Layout'
+import Landing from '@/pages/Landing'
+import CarsDetails from '@/pages/CarsDetails'
+import NewBooking from '@/pages/NewBooking'
+import MyCarsBookings from '@/pages/MyCarsBooking'
+import SeeMyCars from '@/pages/SeeMyCars'
+import ManageBookings from '@/pages/ManageBookings'
+import AddNewCar from '@/pages/AddNewCar'
+import Error from '@/pages/Error'
+import Login from '@/pages/Login'
+import Home from '@/pages/Home'
 
 // Configure axios hooks
 configure({
@@ -25,8 +27,10 @@ configure({
 function App(): ReactElement {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path={AppRoutes.home} element={<Layout />}>
-        <Route index element={<Home />} />
+      <Route element={<Layout />}>
+        <Route index element={<Landing />} />
+        <Route path={AppRoutes.login} element={<Login />} />
+        <Route path={AppRoutes.home} element={<Home />} />
         <Route path={AppRoutes.bookCar} element={<NewBooking />} />
         <Route path={AppRoutes.myBookings} element={<ManageBookings />} />
         <Route path={AppRoutes.carDetail} element={<CarsDetails />} />
