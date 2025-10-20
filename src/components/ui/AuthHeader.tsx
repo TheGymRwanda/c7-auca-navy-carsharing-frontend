@@ -2,6 +2,7 @@ import { AuthContextType } from '@/types/AuthTypes'
 import Logo from '@/assets/Logo'
 import ProfileIcon from '@/assets/ProfileIcon'
 import NavigationMenu from '@/components/menu-bar/NavigationMenu'
+import DesktopNav from '../menu-bar/DesktopNav'
 
 export default function AuthHeader({ loggedIn }: AuthContextType) {
   return (
@@ -13,10 +14,13 @@ export default function AuthHeader({ loggedIn }: AuthContextType) {
       >
         {loggedIn ? (
           <>
-            <div>
+            <div className="block lg:hidden">
               <NavigationMenu />
             </div>
-            <div>
+            <div className="hidden w-full lg:block">
+              <DesktopNav />
+            </div>
+            <div className="py-1.9 lg:pl-4">
               <ProfileIcon className="text-white" />
             </div>
           </>

@@ -31,7 +31,12 @@ export default function NavigationMenu() {
             <MenuLink route={AppRoutes.myCarsBooking} icon={<ListIcon />} name="My Car's Booking" />
             <MenuLink route={AppRoutes.addNewCars} icon={<CarPlusIcon />} name="Add New Car" />
             <div className="my-2 border-t"></div>
-            <MenuLink route={AppRoutes.home} icon={<LogoutIcon />} name="Logout" onclick={logout} />
+            <MenuLink
+              route={AppRoutes.landing}
+              icon={<LogoutIcon />}
+              name="Logout"
+              onclick={logout}
+            />
           </MenuItems>
         </NavigationMenuTransition>
       </Menu>

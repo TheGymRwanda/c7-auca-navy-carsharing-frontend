@@ -1,4 +1,4 @@
-import { Link as RouterLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import clsx from 'clsx'
 
 import { ButtonProps } from '@/types/ButtonTypes'
@@ -12,7 +12,7 @@ const Button = ({
   className = '',
 }: ButtonProps) => {
   const baseClasses =
-    'w-full rounded-full border-2 py-2 text-lg font-semibold text-center transition-all duration-300'
+    'w-5/6 md:w-2/3 lg:w-1/2 mx-auto rounded-full border-2 py-2 text-lg font-semibold text-center transition-all duration-300'
 
   const variantClasses = clsx({
     'border-white bg-white text-cyan-800 hover:bg-gray-200 hover:border-gray-100':
@@ -24,13 +24,9 @@ const Button = ({
 
   if (to) {
     return (
-      <RouterLink
-        to={to}
-        onClick={onClick}
-        className={clsx(baseClasses, variantClasses, className)}
-      >
+      <NavLink to={to} onClick={onClick} className={clsx(baseClasses, variantClasses, className)}>
         {title}
-      </RouterLink>
+      </NavLink>
     )
   }
 

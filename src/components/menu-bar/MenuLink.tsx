@@ -6,7 +6,7 @@ import { MenuLinkProp } from '@/types/MenuType'
 export default function MenuLink({ onclick, route, icon, name }: MenuLinkProp) {
   return (
     <MenuItem>
-      <NavLink className="flex items-center gap-4 p-2" to={route} onClick={onclick}>
+      <NavLink className="flex items-center gap-4 p-2 text-white" to={route} onClick={onclick}>
         {icon}
         <span>{name}</span>
       </NavLink>
