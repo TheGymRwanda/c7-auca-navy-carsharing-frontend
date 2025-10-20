@@ -11,7 +11,7 @@ interface AuthInputProps {
 
 function AuthInputs({ type = 'text', placeholder, value, onChange, icon }: AuthInputProps) {
   return (
-    <div className="flex w-5/6 items-center rounded-full bg-[#64A1C0] px-5 py-4 md:w-2/3 lg:w-1/2">
+    <div className="flex w-5/6 items-center rounded-full bg-[#64A1C0] px-5 py-4 md:w-2/3 lg:w-1/2 mx-auto">
       {icon && <div className="mr-2 text-white">{icon}</div>}
 
       <input
