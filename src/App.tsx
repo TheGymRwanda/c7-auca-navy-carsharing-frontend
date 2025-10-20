@@ -13,6 +13,7 @@ import MyCarsBookings from '@/pages/MyCarsBooking'
 import SeeMyCars from '@/pages/SeeMyCars'
 import ManageBookings from '@/pages/ManageBookings'
 import AddNewCar from '@/pages/AddNewCar'
+import ShowAllCars from '@/pages/ShowAllCars'
 import Error from '@/pages/Error'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
@@ -37,6 +38,7 @@ function App(): ReactElement {
         <Route path={AppRoutes.seeMyCars} element={<SeeMyCars />} />
         <Route path={AppRoutes.myCarsBooking} element={<MyCarsBookings />} />
         <Route path={AppRoutes.addNewCars} element={<AddNewCar />} />
+        <Route path={AppRoutes.showAllCars} element={<ShowAllCars />} />
         <Route path={AppRoutes.notFoundPage} element={<Error />} />
       </Route>,
     ),
