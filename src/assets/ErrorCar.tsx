@@ -1,11 +1,10 @@
-interface ErrorCarProps {
-  className?: string
-}
-export default function ErrorCar({ className }: ErrorCarProps) {
+import { IconProps } from '@/types/IconsType'
+
+export default function ErrorCar({ className, width = '214', height = '214' }: IconProps) {
   return (
     <svg
-      width="214"
-      height="214"
+      width={width}
+      height={height}
       viewBox="0 0 214 214"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

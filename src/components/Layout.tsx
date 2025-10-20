@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router'
 
-import AuthContext from '../context/AuthContext'
-import Header from './Header'
+import LoggedInAuthContext from '@/context/LoggedInAuthContext'
+import Header from '@/components/Header'
 
 export default function Layout() {
   return (
-    <AuthContext>
+    <LoggedInAuthContext>
       <Header />
-      <main className="bg-[#265e78]">
+      <main className="bg-primary-color">
         <Outlet />
       </main>
-    </AuthContext>
+    </LoggedInAuthContext>
   )
 }

@@ -1,16 +1,6 @@
-import { ReactElement } from 'react'
+import { IconProps } from '@/types/IconsType'
 
-interface XIconProps {
-  className?: string
-  width?: string
-  height?: string
-}
-
-export default function XIcon({
-  className,
-  width = '18',
-  height = '18',
-}: XIconProps): ReactElement {
+export default function XIcon({ className, width = '18', height = '18' }: IconProps) {
   return (
     <svg
       width={width}
