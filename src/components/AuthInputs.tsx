@@ -7,19 +7,22 @@ interface AuthInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   icon?: React.ReactNode
   error?: string
+  name?: string
 }
 
-function AuthInputs({ type = 'text', placeholder, value, onChange, icon }: AuthInputProps) {
+function AuthInputs({ type = 'text', placeholder, value, onChange, name }: AuthInputProps) {
   return (
-    <div className="flex w-5/6 items-center rounded-full bg-[#64A1C0] px-5 py-4 md:w-2/3 lg:w-1/2 mx-auto">
-      {icon && <div className="mr-2 text-white">{icon}</div>}
+    <div>
+      {/* {icon && <div className="mr-2 text-white">{icon}</div>} */}
 
       <input
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="flex-1 bg-transparent font-semibold text-black outline-none placeholder:text-white/80"
+        className="mb-4 text-black"
+        name={name}
+        required
       />
     </div>
   )

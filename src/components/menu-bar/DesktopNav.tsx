@@ -11,7 +11,7 @@ export default function DesktopNav() {
       <ul className="flex gap-5 pl-10 text-white">
         <div>|</div>
         <li>
-          <NavLink to={AppRoutes.home} className="transition hover:border-y">
+          <NavLink to={AppRoutes.bookCar} className="transition hover:border-y">
             Book A Car
           </NavLink>
         </li>

@@ -1,5 +1,8 @@
+import { SyntheticEvent } from 'react'
+
 export type AuthContextType = {
   loggedIn: boolean
-  login?: () => void
+  login?: (event: SyntheticEvent<HTMLFormElement>) => void
   logout?: () => void
+  loadingAuth: boolean
 }
