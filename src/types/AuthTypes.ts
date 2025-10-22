@@ -6,4 +6,5 @@ export type AuthContextType = {
   logout?: () => void
   loadingAuth: boolean
   errorLogin: boolean
+  userId: number
 }

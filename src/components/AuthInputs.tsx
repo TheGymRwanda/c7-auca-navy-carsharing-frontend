@@ -8,21 +8,29 @@ interface AuthInputProps {
   icon?: React.ReactNode
   error?: string
   name?: string
+  required?: boolean
 }
 
-function AuthInputs({ type = 'text', placeholder, value, onChange, name }: AuthInputProps) {
+function AuthInputs({
+  type = 'text',
+  placeholder,
+  value,
+  onChange,
+  name,
+  icon,
+  required,
+}: AuthInputProps) {
   return (
-    <div>
-      {/* {icon && <div className="mr-2 text-white">{icon}</div>} */}
-
+    <div className="relative">
+      {icon && <span>{icon}</span>}
       <input
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="mb-4 text-black"
+        className="mx-auto mb-6 w-5/6 rounded-full bg-input px-14  py-4 text-white outline-none placeholder:text-white md:w-2/3 lg:w-1/2"
         name={name}
-        required
+        required={required}
       />
     </div>
   )

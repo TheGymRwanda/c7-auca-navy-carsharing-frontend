@@ -2,8 +2,15 @@ import { useNavigate } from 'react-router-dom'
 import useAllCars from '@/hooks/useAllCars'
 import { ChevronBackIcon } from '@/assets/ChevronBackIcon'
 import AllCarsCard from '@/components/AllCarsCard'
+import { AuthContext } from '@/context/LoggedInAuthContext'
+import { useUser } from '@/hooks'
+import { useContext } from 'react'
 
 export default function ShowAllCars() {
+  const { logout, userId } = useContext(AuthContext)
+  const userData = useUser(userId)
+
+  if (userData[0].error?.status === 400) logout?.()
   const navigate = useNavigate()
   const { carsList, loading, error } = useAllCars()
 

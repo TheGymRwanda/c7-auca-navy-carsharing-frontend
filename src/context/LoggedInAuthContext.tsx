@@ -1,10 +1,11 @@
 import { createContext, useState, PropsWithChildren, SyntheticEvent, useEffect } from 'react'
 
-import { AuthContextType } from '@/types/AuthTypes'
-import useAxios from 'axios-hooks'
-import { jwtDecode } from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
+import useAxios from 'axios-hooks'
+
 import { AppRoutes } from '@/types/AppRoutesType'
+import { AuthContextType } from '@/types/AuthTypes'
+import { apiUrl } from '@/util/apiUrl'
 
 export const AuthContext = createContext<AuthContextType>({
   loggedIn: false,
@@ -12,6 +13,7 @@ export const AuthContext = createContext<AuthContextType>({
   logout: () => {},
   loadingAuth: false,
   errorLogin: false,
+  userId: 17,
 })
 
 export default function LoggedInAuthContext({ children }: PropsWithChildren) {
@@ -21,11 +23,12 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
   const [errorLogin, setErrorLogin] = useState(false)
   const [{ data, loading, error }, auth] = useAxios(
     {
-      url: 'https://carsharing-backend-production.up.railway.app/auth',
+      url: `${apiUrl}/auth`,
       method: 'POST',
     },
     { manual: true },
   )
+  const [userId, setUserId] = useState(17)
   const navigate = useNavigate()
 
   const login = (evnt: SyntheticEvent<HTMLFormElement>) => {
@@ -50,10 +53,7 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
       setLoggedIn(
         localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null,
       )
-      const tokenExp = jwtDecode(data?.token).exp
-      setTimeout(() => {
-        logout()
-      }, tokenExp)
+      setUserId(data?.userId)
     }
   }, [data, error])
   const logout = () => {
@@ -64,7 +64,7 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
   const loadingAuth = loading
 
   return (
-    <AuthContext.Provider value={{ loggedIn, login, loadingAuth, logout, errorLogin }}>
+    <AuthContext.Provider value={{ loggedIn, login, loadingAuth, logout, errorLogin, userId }}>
       {children}
     </AuthContext.Provider>
   )

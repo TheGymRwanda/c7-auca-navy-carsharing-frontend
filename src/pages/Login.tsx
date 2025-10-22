@@ -24,20 +24,22 @@ export default function Login() {
       <form onSubmit={login}>
         <AuthInputs
           placeholder="Username/e-mail"
-          icon={<ProfileIcon />}
+          icon={<ProfileIcon className="fixed ml-4 mt-4 inline" />}
           type="text"
           name="user_name_email"
+          required={true}
         />
         <AuthInputs
           placeholder="Password"
-          icon={<KeyIcon className="text-white" />}
+          icon={<KeyIcon className="fixed ml-4 mt-4 inline" />}
           type="password"
           name="password"
+          required={true}
         />
         {errorLogin && (
-          <p>
+          <p className="text-sm text-warn-user">
             <span>Your login attempt was not successful.</span>
-            <span>Please make sure your user name and password are correct</span>
+            <span className="block">Please make sure your user name and password are correct</span>
           </p>
         )}
         <Button
@@ -45,6 +47,7 @@ export default function Login() {
           title={loadingAuth ? 'Loading' : 'Login'}
           type="submit"
           variant="filled"
+          className="mt-12"
         />
       </form>
     </NoAuthPageContainer>
