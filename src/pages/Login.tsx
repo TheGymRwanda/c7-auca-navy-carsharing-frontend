@@ -40,7 +40,12 @@ export default function Login() {
             <span>Please make sure your user name and password are correct</span>
           </p>
         )}
-        <Button title={loadingAuth ? 'Loading' : 'Login'} type="submit" variant="filled" />
+        <Button
+          disabled={loadingAuth}
+          title={loadingAuth ? 'Loading' : 'Login'}
+          type="submit"
+          variant="filled"
+        />
       </form>
     </NoAuthPageContainer>
   )

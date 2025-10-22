@@ -2,6 +2,9 @@ import { createContext, useState, PropsWithChildren, SyntheticEvent, useEffect }
 
 import { AuthContextType } from '@/types/AuthTypes'
 import useAxios from 'axios-hooks'
+import { jwtDecode } from 'jwt-decode'
+import { useNavigate } from 'react-router-dom'
+import { AppRoutes } from '@/types/AppRoutesType'
 
 export const AuthContext = createContext<AuthContextType>({
   loggedIn: false,
@@ -23,8 +26,8 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
     },
     { manual: true },
   )
+  const navigate = useNavigate()
 
-  //implement logging out use automatically when token is expired with the exp value in the payload from the token
   const login = (evnt: SyntheticEvent<HTMLFormElement>) => {
     evnt.preventDefault()
     const form = evnt.currentTarget
@@ -47,11 +50,16 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
       setLoggedIn(
         localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null,
       )
+      const tokenExp = jwtDecode(data?.token).exp
+      setTimeout(() => {
+        logout()
+      }, tokenExp)
     }
   }, [data, error])
   const logout = () => {
     localStorage.removeItem('token')
     setLoggedIn(false)
+    navigate(AppRoutes.login)
   }
   const loadingAuth = loading
 
