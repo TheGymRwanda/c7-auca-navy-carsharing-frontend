@@ -8,10 +8,14 @@ export const AuthContext = createContext<AuthContextType>({
   login: () => {},
   logout: () => {},
   loadingAuth: false,
+  errorLogin: false,
 })
 
 export default function LoggedInAuthContext({ children }: PropsWithChildren) {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null,
+  )
+  const [errorLogin, setErrorLogin] = useState(false)
   const [{ data, loading, error }, auth] = useAxios(
     {
       url: 'https://carsharing-backend-production.up.railway.app/auth',
@@ -20,6 +24,7 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
     { manual: true },
   )
 
+  //implement logging out use automatically when token is expired with the exp value in the payload from the token
   const login = (evnt: SyntheticEvent<HTMLFormElement>) => {
     evnt.preventDefault()
     const form = evnt.currentTarget
@@ -33,10 +38,15 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
     })
   }
   useEffect(() => {
-    if (error) throw new Error(error.response?.data?.message)
+    if (error) {
+      setErrorLogin(true)
+      console.error(error.response?.data?.message)
+    }
     if (data) {
       localStorage.setItem('token', data?.token)
-      setLoggedIn(localStorage.getItem('token') !== undefined)
+      setLoggedIn(
+        localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null,
+      )
     }
   }, [data, error])
   const logout = () => {
@@ -46,7 +56,7 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
   const loadingAuth = loading
 
   return (
-    <AuthContext.Provider value={{ loggedIn, login, loadingAuth, logout }}>
+    <AuthContext.Provider value={{ loggedIn, login, loadingAuth, logout, errorLogin }}>
       {children}
     </AuthContext.Provider>
   )

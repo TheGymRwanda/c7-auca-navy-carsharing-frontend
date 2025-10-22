@@ -1,22 +1,24 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { AuthContext } from '@/context/LoggedInAuthContext'
 import Button from '@/components/ui/Button'
 import Hero from '@/components/ui/Hero'
-import PageContainer from '@/components/ui/PageContainer'
 import AuthInputs from '@/components/AuthInputs'
 import KeyIcon from '@/assets/KeyIcon'
 import ProfileIcon from '@/assets/ProfileIcon'
 import { useNavigate } from 'react-router-dom'
 import { AppRoutes } from '@/types/AppRoutesType'
+import NoAuthPageContainer from '@/components/ui/NoAuthPageContainer'
 
 export default function Login() {
-  const { login, loadingAuth, loggedIn } = useContext(AuthContext)
+  const { login, loadingAuth, loggedIn, errorLogin } = useContext(AuthContext)
   const navigate = useNavigate()
-  if (loggedIn) {
-    navigate(AppRoutes.home)
-  }
+  useEffect(() => {
+    if (loggedIn) {
+      navigate(AppRoutes.home)
+    }
+  }, [loadingAuth])
   return (
-    <PageContainer>
+    <NoAuthPageContainer>
       <Hero />
       <p className="pt-8 text-2xl">Log in</p>
       <form onSubmit={login}>
@@ -32,8 +34,14 @@ export default function Login() {
           type="password"
           name="password"
         />
+        {errorLogin && (
+          <p>
+            <span>Your login attempt was not successful.</span>
+            <span>Please make sure your user name and password are correct</span>
+          </p>
+        )}
         <Button title={loadingAuth ? 'Loading' : 'Login'} type="submit" variant="filled" />
       </form>
-    </PageContainer>
+    </NoAuthPageContainer>
   )
 }

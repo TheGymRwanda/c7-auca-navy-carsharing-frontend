@@ -5,4 +5,5 @@ export type AuthContextType = {
   login?: (event: SyntheticEvent<HTMLFormElement>) => void
   logout?: () => void
   loadingAuth: boolean
+  errorLogin: boolean
 }

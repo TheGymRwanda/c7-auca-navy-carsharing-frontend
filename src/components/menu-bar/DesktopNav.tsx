@@ -42,7 +42,7 @@ export default function DesktopNav() {
         </li>
         <div>|</div>
         <li>
-          <NavLink to={AppRoutes.landing} className="transition hover:border-y" onClick={logout}>
+          <NavLink to={AppRoutes.login} className="transition hover:border-y" onClick={logout}>
             Logout
           </NavLink>
         </li>

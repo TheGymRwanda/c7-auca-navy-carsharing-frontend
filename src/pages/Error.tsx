@@ -23,7 +23,7 @@ export default function Error() {
           <span>Please login first.</span>
         )}
       </p>
-      <Button title="Go Back" to={AppRoutes.landing} />
+      <Button title="Go Back" to={AppRoutes.login} />
     </div>
   )
 }
