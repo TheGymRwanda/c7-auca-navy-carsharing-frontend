@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { fetchWithAuth } from '../util/auth'
-import { useEffect, useState } from 'react'
 import CarIcon from '../assets/CarIcon'
 import Attention from '../assets/Attention.png'
 import licenseplate from '../assets/LicensePlate.png'

@@ -1,7 +1,8 @@
-import { AuthContext } from '@/context/LoggedInAuthContext'
-import { AppRoutes } from '@/types/AppRoutesType'
 import { PropsWithChildren, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
+
+import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AppRoutes } from '@/types/AppRoutesType'
 
 export default function NoAuthPageContainer({ children }: PropsWithChildren) {
   const { loggedIn } = useContext(AuthContext)

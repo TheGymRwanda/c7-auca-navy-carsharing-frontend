@@ -1,17 +1,6 @@
-import React from 'react'
+import { AuthInputProps } from '@/types/AuthInputTypes'
 
-interface AuthInputProps {
-  type?: 'text' | 'email' | 'password'
-  placeholder?: string
-  value?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  icon?: React.ReactNode
-  error?: string
-  name?: string
-  required?: boolean
-}
-
-function AuthInputs({
+export default function AuthInputs({
   type = 'text',
   placeholder,
   value,
@@ -35,5 +24,3 @@ function AuthInputs({
     </div>
   )
 }
-
-export default AuthInputs

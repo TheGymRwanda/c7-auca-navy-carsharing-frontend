@@ -1,9 +1,10 @@
+import { useContext } from 'react'
+import { useUser } from '@/hooks'
+
 import Button from '@/components/ui/Button'
 import { AppRoutes } from '@/types/AppRoutesType'
 import Hero from '@/components/ui/Hero'
 import PageContainer from '@/components/ui/PageContainer'
-import { useUser } from '@/hooks'
-import { useContext } from 'react'
 import { AuthContext } from '@/context/LoggedInAuthContext'
 
 export default function Home() {
