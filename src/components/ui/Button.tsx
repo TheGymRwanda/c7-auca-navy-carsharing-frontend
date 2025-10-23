@@ -10,6 +10,7 @@ const Button = ({
   variant = 'outlined',
   onClick,
   className = '',
+  type = undefined,
 }: ButtonProps) => {
   const baseClasses =
     'w-5/6 md:w-2/3 lg:w-1/2 mx-auto rounded-full border-2 py-2 text-lg font-semibold text-center transition-all duration-300'
@@ -24,7 +25,11 @@ const Button = ({
 
   if (to) {
     return (
-      <NavLink to={to} onClick={onClick} className={clsx(baseClasses, variantClasses, className)}>
+      <NavLink
+        to={to}
+        onClick={onClick}
+        className={clsx(baseClasses, variantClasses, type, className)}
+      >
         {title}
       </NavLink>
     )
@@ -35,6 +40,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
       className={clsx(baseClasses, variantClasses, className)}
+      type={type}
     >
       {title}
     </button>

@@ -1,28 +1,26 @@
-import React from 'react'
+import { AuthInputProps } from '@/types/AuthInputTypes'
 
-interface AuthInputProps {
-  type?: 'text' | 'email' | 'password'
-  placeholder?: string
-  value?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  icon?: React.ReactNode
-  error?: string
-}
-
-function AuthInputs({ type = 'text', placeholder, value, onChange, icon }: AuthInputProps) {
+export default function AuthInputs({
+  type = 'text',
+  placeholder,
+  value,
+  onChange,
+  name,
+  icon,
+  required,
+}: AuthInputProps) {
   return (
-    <div className="flex w-5/6 items-center rounded-full bg-[#64A1C0] px-5 py-4 md:w-2/3 lg:w-1/2 mx-auto">
-      {icon && <div className="mr-2 text-white">{icon}</div>}
-
+    <div className="relative">
+      {icon && <span>{icon}</span>}
       <input
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="flex-1 bg-transparent font-semibold text-black outline-none placeholder:text-white/80"
+        className="mx-auto mb-6 w-5/6 rounded-full bg-input px-14  py-4 text-white outline-none placeholder:text-white md:w-2/3 lg:w-1/2"
+        name={name}
+        required={required}
       />
     </div>
   )
 }
-
-export default AuthInputs

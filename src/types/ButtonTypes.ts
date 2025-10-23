@@ -5,4 +5,5 @@ export type ButtonProps = {
   variant?: 'filled' | 'outlined'
   onClick?: () => void
   className?: string
+  type?: 'button' | 'submit' | 'reset' | undefined
 }

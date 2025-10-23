@@ -1,14 +1,18 @@
+import { useContext } from 'react'
+
 import { useNavigate } from 'react-router-dom'
 import useAllCars from '@/hooks/useAllCars'
 import { ChevronBackIcon } from '@/assets/ChevronBackIcon'
 import AllCarsCard from '@/components/AllCarsCard'
+import { AuthContext } from '@/context/LoggedInAuthContext'
 
 export default function ShowAllCars() {
   const navigate = useNavigate()
+  const { logout } = useContext(AuthContext)
   const { carsList, loading, error } = useAllCars()
 
   if (loading) return <p className="mt-10 text-center">Loading car details...</p>
-  if (error) return <p className="mt-10 text-center">Error: {error.message}</p>
+  if (error) logout?.()
 
   return (
     <main className="mx-auto flex min-h-screen flex-col gap-8 py-20 text-center font-lora text-gray-100">
