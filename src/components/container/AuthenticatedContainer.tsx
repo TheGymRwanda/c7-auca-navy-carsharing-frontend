@@ -4,11 +4,12 @@ import { Navigate } from 'react-router-dom'
 import { AuthContext } from '@/context/LoggedInAuthContext'
 import { AppRoutes } from '@/types/AppRoutesType'
 
-export default function NoAuthPageContainer({ children }: PropsWithChildren) {
+export default function AuthenticatedContainer({ children }: PropsWithChildren) {
   const { loggedIn } = useContext(AuthContext)
+
   return (
     <div className="flex min-h-screen flex-col gap-8 py-20 text-center font-lora text-gray-100">
-      {loggedIn ? <Navigate to={AppRoutes.home} /> : children}
+      {loggedIn ? children : <Navigate to={AppRoutes.notFoundPage} />}
     </div>
   )
 }

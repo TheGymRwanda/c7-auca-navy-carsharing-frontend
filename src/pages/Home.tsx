@@ -1,11 +1,12 @@
 import { useContext } from 'react'
-import { useUser } from '@/hooks'
 
-import Button from '@/components/ui/Button'
-import { AppRoutes } from '@/types/AppRoutesType'
-import Hero from '@/components/ui/Hero'
-import PageContainer from '@/components/ui/PageContainer'
+import { useUser } from '@/hooks'
 import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AppRoutes } from '@/types/AppRoutesType'
+
+import AuthenticatedContainer from '@/components/container/AuthenticatedContainer'
+import Button from '@/components/ui/Button'
+import Hero from '@/components/ui/Hero'
 
 export default function Home() {
   const { logout, userId } = useContext(AuthContext)
@@ -14,7 +15,7 @@ export default function Home() {
   if (error?.status === 400) logout?.()
 
   return (
-    <PageContainer>
+    <AuthenticatedContainer>
       <Hero />
       <p className="py-12 text-2xl">
         Hello {data?.name ? data?.name : 'User'}!
@@ -24,6 +25,6 @@ export default function Home() {
       <span>or</span>
       <Button title="See my Cars" to={AppRoutes.seeMyCars} />
       <Button title="See my Bookings" to={AppRoutes.myBookings} />
-    </PageContainer>
+    </AuthenticatedContainer>
   )
 }

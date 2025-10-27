@@ -31,15 +31,15 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
   const [userId, setUserId] = useState(17)
   const navigate = useNavigate()
 
-  const login = (evnt: SyntheticEvent<HTMLFormElement>) => {
-    evnt.preventDefault()
-    const form = evnt.currentTarget
-    const user_name_email = form.user_name_email.value
-    const user_pwd = form.password.value
+  const login = (event: SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    const userNameOrEmail = form.userNameOrEmail.value
+    const userPassword = form.password.value
     auth({
       data: {
-        username: user_name_email,
-        password: user_pwd,
+        username: userNameOrEmail,
+        password: userPassword,
       },
     })
   }

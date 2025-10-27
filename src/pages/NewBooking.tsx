@@ -1,9 +1,10 @@
 import { useContext } from 'react'
-import { useUser } from '@/hooks'
 
-import PageContainer from '@/components/ui/PageContainer'
-import PageHeading from '@/components/ui/PageHeading'
+import { useUser } from '@/hooks'
 import { AuthContext } from '@/context/LoggedInAuthContext'
+
+import AuthenticatedContainer from '@/components/container/AuthenticatedContainer'
+import PageHeading from '@/components/ui/PageHeading'
 
 export default function NewBooking() {
   const { logout, userId } = useContext(AuthContext)
@@ -11,8 +12,8 @@ export default function NewBooking() {
 
   if (error?.status === 400) logout?.()
   return (
-    <PageContainer>
+    <AuthenticatedContainer>
       <PageHeading name="Available Cars" />
-    </PageContainer>
+    </AuthenticatedContainer>
   )
 }

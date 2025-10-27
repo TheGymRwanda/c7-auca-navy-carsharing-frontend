@@ -1,13 +1,15 @@
 import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AppRoutes } from '@/types/AppRoutesType'
+
 import Button from '@/components/ui/Button'
 import Hero from '@/components/ui/Hero'
-import AuthInputs from '@/components/AuthInputs'
+import AuthInputs from '@/components/ui/AuthInputs'
 import KeyIcon from '@/assets/KeyIcon'
 import ProfileIcon from '@/assets/ProfileIcon'
-import { useNavigate } from 'react-router-dom'
-import { AppRoutes } from '@/types/AppRoutesType'
-import NoAuthPageContainer from '@/components/ui/NoAuthPageContainer'
+import UnauthenticatedContainer from '@/components/container/UnauthenticatedContainer'
 
 export default function Login() {
   const { login, loadingAuth, loggedIn, errorLogin } = useContext(AuthContext)
@@ -18,7 +20,7 @@ export default function Login() {
     }
   }, [loadingAuth])
   return (
-    <NoAuthPageContainer>
+    <UnauthenticatedContainer>
       <Hero />
       <p className="pt-8 text-2xl">Log in</p>
       <form onSubmit={login}>
@@ -26,7 +28,7 @@ export default function Login() {
           placeholder="Username/e-mail"
           icon={<ProfileIcon className="fixed ml-4 mt-4 inline" />}
           type="text"
-          name="user_name_email"
+          name="userNameOrEmail"
           required={true}
         />
         <AuthInputs
@@ -50,6 +52,6 @@ export default function Login() {
           className="mt-12"
         />
       </form>
-    </NoAuthPageContainer>
+    </UnauthenticatedContainer>
   )
 }

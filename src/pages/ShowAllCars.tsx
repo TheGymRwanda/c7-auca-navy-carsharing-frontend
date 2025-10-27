@@ -1,10 +1,11 @@
 import { useContext } from 'react'
-
 import { useNavigate } from 'react-router-dom'
+
+import { AuthContext } from '@/context/LoggedInAuthContext'
+
 import useAllCars from '@/hooks/useAllCars'
 import { ChevronBackIcon } from '@/assets/ChevronBackIcon'
-import AllCarsCard from '@/components/AllCarsCard'
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import AllCarsCard from '@/components/ui/AllCarsCard'
 
 export default function ShowAllCars() {
   const navigate = useNavigate()
