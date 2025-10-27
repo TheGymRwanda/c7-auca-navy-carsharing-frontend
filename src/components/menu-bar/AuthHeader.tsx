@@ -2,7 +2,7 @@ import { AuthContextType } from '@/types/AuthTypes'
 import Logo from '@/assets/Logo'
 import ProfileIcon from '@/assets/ProfileIcon'
 import NavigationMenu from '@/components/menu-bar/NavigationMenu'
-import DesktopNav from '../menu-bar/DesktopNav'
+import DesktopNav from './DesktopNav'
 
 export default function AuthHeader({ loggedIn }: AuthContextType) {
   return (
