@@ -15,3 +15,13 @@ export interface CarType {
   imageUrl?: string
   name: string
 }
+
+export interface User {
+  id: string
+  name: string
+}
+
+export interface CarWithDetails extends Car {
+  typeData?: CarType | null
+  ownerData?: User | null
+}
