@@ -3,6 +3,8 @@ import Logo from '@/assets/Logo'
 import ProfileIcon from '@/assets/ProfileIcon'
 import NavigationMenu from '@/components/menu-bar/NavigationMenu'
 import DesktopNav from './DesktopNav'
+import { Link } from 'react-router-dom'
+import { AppRoutes } from '@/types/AppRoutesType'
 
 export default function AuthHeader({ loggedIn }: AuthContextType) {
   return (
@@ -32,9 +34,9 @@ export default function AuthHeader({ loggedIn }: AuthContextType) {
       </header>
       {loggedIn && (
         <div className="relative flex justify-center">
-          <div className="absolute rounded-b-full bg-header-color py-5">
+          <Link to={AppRoutes.home} className="absolute rounded-b-full bg-header-color py-5">
             <Logo />
-          </div>
+          </Link>
         </div>
       )}
     </>
