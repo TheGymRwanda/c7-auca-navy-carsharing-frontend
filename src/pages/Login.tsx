@@ -26,14 +26,14 @@ export default function Login() {
       <form onSubmit={login}>
         <AuthInputs
           placeholder="Username/e-mail"
-          icon={<ProfileIcon className="fixed ml-4 mt-4 inline" />}
+          icon={<ProfileIcon className="absolute ml-4 mt-4 inline" />}
           type="text"
           name="userNameOrEmail"
           required={true}
         />
         <AuthInputs
           placeholder="Password"
-          icon={<KeyIcon className="fixed ml-4 mt-4 inline" />}
+          icon={<KeyIcon className="absolute ml-4 mt-4 inline" />}
           type="password"
           name="password"
           required={true}
