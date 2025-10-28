@@ -16,7 +16,7 @@ export default function AddNewCar() {
   return (
     <AuthenticatedContainer>
       <PageHeading name="Add New Car" />
-      <NewCarForm/>
+      <NewCarForm />
     </PageContainer>
   )
 }

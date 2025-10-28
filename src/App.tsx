@@ -17,8 +17,7 @@ import ShowAllCars from '@/pages/ShowAllCars'
 import Error from '@/pages/Error'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
-import '@/components/NewCarForm.tsx';
-import NewCarForm from '@/components/NewCarForm'
+import '@/components/NewCarForm.tsx'
 
 // Configure axios hooks
 configure({
@@ -42,7 +41,6 @@ function App(): ReactElement {
         <Route path={AppRoutes.addNewCars} element={<AddNewCar />} />
         <Route path={AppRoutes.showAllCars} element={<ShowAllCars />} />
         <Route path={AppRoutes.notFoundPage} element={<Error />} />
-    
       </Route>,
     ),
   )
