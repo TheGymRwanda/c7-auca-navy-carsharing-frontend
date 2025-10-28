@@ -16,6 +16,8 @@ import AddNewCar from '@/pages/AddNewCar'
 import Error from '@/pages/Error'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
+import '@/components/NewCarForm.tsx';
+import NewCarForm from '@/components/NewCarForm'
 
 // Configure axios hooks
 configure({
@@ -38,6 +40,7 @@ function App(): ReactElement {
         <Route path={AppRoutes.myCarsBooking} element={<MyCarsBookings />} />
         <Route path={AppRoutes.addNewCars} element={<AddNewCar />} />
         <Route path={AppRoutes.notFoundPage} element={<Error />} />
+    
       </Route>,
     ),
   )
