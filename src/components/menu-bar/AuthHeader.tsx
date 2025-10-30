@@ -12,7 +12,7 @@ export default function AuthHeader({ loggedIn }: AuthContextType) {
       <header
         className={`${
           loggedIn ? 'justify-between py-3' : 'justify-center py-7'
-        } absolute flex w-full items-center rounded-b-xl bg-header-color px-4 py-3`}
+        } fixed flex w-full items-center rounded-b-xl bg-header-color px-4 py-3`}
       >
         {loggedIn ? (
           <>
@@ -27,14 +27,14 @@ export default function AuthHeader({ loggedIn }: AuthContextType) {
             </div>
           </>
         ) : (
-          <div className="absolute rounded-b-full bg-header-color py-6">
+          <div className="fixed rounded-b-full bg-header-color py-6">
             <Logo />
           </div>
         )}
       </header>
       {loggedIn && (
         <div className="relative flex justify-center">
-          <Link to={AppRoutes.home} className="absolute rounded-b-full bg-header-color py-5">
+          <Link to={AppRoutes.home} className="fixed rounded-b-full bg-header-color py-5">
             <Logo />
           </Link>
         </div>

@@ -1,55 +1,41 @@
-import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { fetchWithAuth } from '@/util/auth'
+import { useMemo } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import useAxios from 'axios-hooks'
+import Error from '@/pages/Error'
+import ProfileIcon from '@/assets/ProfileIcon'
 import CarIcon from '@/assets/CarIcon'
+import HorseIcon from '@/assets/HorseIcon'
+import FuelIcon from '@/assets/FuelIcon'
 import Attention from '@/assets/Attention.png'
 import licenseplate from '@/assets/LicensePlate.png'
-import HorseIcon from '@/assets/HorseIcon'
 import { ChevronBackIcon } from '@/assets/ChevronBackIcon'
-import FuelIcon from '@/assets/FuelIcon'
-import ProfileIcon from '@/assets/ProfileIcon'
 import Button from '@/components/ui/Button'
-import { Car, CarType } from '@/types/CarTypes'
-import Error from '@/pages/Error'
 import MyCarDetailsItem from '@/components/ui/MyCarDetailsItem'
+import { Car } from '@/types/CarTypes'
+import { apiUrl } from '@/util/apiUrl'
+import { useCarTypes } from '@/hooks'
+import { getAuthToken } from '@/util/auth'
 
-export default function MyCarDetails() {
-  const { id } = useParams<{ id: string }>()
+export default function CarDetails() {
+  const { id } = useParams()
   const navigate = useNavigate()
-  const [car, setCar] = useState<Car | null>(null)
-  const [carType, setCarType] = useState<CarType | null>(null)
-  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    let isMounted = true
-    const fetchCarDetails = async () => {
-      try {
-        const carData = (await fetchWithAuth(`/cars/${id}`)) as Car
-        if (!isMounted) return
-        setCar(carData)
+  const [{ data: car, loading, error }] = useAxios<Car>({
+    url: `${apiUrl}/cars/${id}`,
+    headers: { Authorization: `Bearer ${getAuthToken()}` },
+  })
 
-        if (carData?.carTypeId) {
-          const typeData = (await fetchWithAuth(`/car-types/${carData.carTypeId}`)) as CarType
-          if (!isMounted) return
-          setCarType(typeData)
-        }
-      } catch (error) {
-        console.error('Error fetching car details:', error)
-      } finally {
-        if (isMounted) setLoading(false)
-      }
-    }
+  const [{ data: carTypes }] = useCarTypes()
 
-    fetchCarDetails()
-
-    return () => {
-      isMounted = false
-    }
-  }, [id])
+  const carTypeDetails = useMemo(() => {
+    if (!car || !carTypes) return undefined
+    const foundType = carTypes.find(t => t.id === Number(car.carTypeId))
+    return foundType ? { imageUrl: foundType.imageUrl, name: foundType.name } : undefined
+  }, [car, carTypes])
 
   if (loading) return <p className="mt-10 text-center text-white">Loading car details...</p>
-  if (!car) return <Error />
-  if (!carType) return <p className="mt-10 text-center text-gray-300">Car type not found.</p>
+  if (error || !car) return <Error />
+  if (!carTypeDetails) return <p className="mt-10 text-center text-gray-300">Car type not found.</p>
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-gradient-to-b to-sky-700 text-white">
@@ -62,33 +48,32 @@ export default function MyCarDetails() {
 
       <div className="mt-6 mx-auto">
         <img
-          src={carType.imageUrl || '/placeholder-car.png'}
+          src={carTypeDetails.imageUrl || '/placeholder-car.png'}
           alt={car.name}
           className="max-h-64 rounded-xl object-cover"
         />
       </div>
 
-      <div className="mt-6 md:w-auto w-full mx-auto space-y-3 md:px-0 px-10 text-left">
+      <div className="mt-6 w-full max-w-xl mx-auto space-y-3 px-6 text-left">
         <h2 className="font-lora text-lg">{car.name}</h2>
 
-        <div className="flex md:w-auto md:space-x-32 mx-auto md:flex-row flex-col">
-          <div className="md:w-auto w-full">
+        <div className="flex flex-col md:flex-row md:space-x-32">
+          <div className="space-y-2">
             <MyCarDetailsItem title={car.ownerId} icon={<ProfileIcon />} />
-            <MyCarDetailsItem title={carType.name} icon={<CarIcon />} />
+            <MyCarDetailsItem title={carTypeDetails.name} icon={<CarIcon />} />
             <MyCarDetailsItem title={car.licensePlate} img={licenseplate} />
           </div>
 
-          <div className="md:w-auto w-full">
+          <div className="space-y-2">
             <MyCarDetailsItem title={car.horsepower} icon={<HorseIcon />} />
             <MyCarDetailsItem title={car.fuelType} icon={<FuelIcon />} />
-
             {car.state && <MyCarDetailsItem title={car.state} img={Attention} />}
           </div>
         </div>
 
-        <div className="flex gap-x-4 flex-row">
-          <Button title="Edit Car" variant="filled" to={`/cars/ownded/${id}/edit`} />
-          <Button title="Delete Car" variant="outlined" to={`/cars/ownded/${id}/edit`} />
+        <div className="flex gap-4 my-4 md:w-5/6">
+          <Button title="Edit Car" variant="filled" to={`/cars/owned/${id}/edit`} />
+          <Button title="Delete Car" variant="outlined" to={`/cars/owned/${id}/edit`} />
         </div>
       </div>
     </div>
