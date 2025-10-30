@@ -1,10 +1,10 @@
 import { AuthContextType } from '@/types/AuthTypes'
+import { Link } from 'react-router-dom'
+import { AppRoutes } from '@/types/AppRoutesType'
 import Logo from '@/assets/Logo'
 import ProfileIcon from '@/assets/ProfileIcon'
 import NavigationMenu from '@/components/menu-bar/NavigationMenu'
 import DesktopNav from './DesktopNav'
-import { Link } from 'react-router-dom'
-import { AppRoutes } from '@/types/AppRoutesType'
 
 export default function AuthHeader({ loggedIn }: AuthContextType) {
   return (
