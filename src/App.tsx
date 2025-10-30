@@ -17,6 +17,7 @@ import ShowAllCars from '@/pages/ShowAllCars'
 import Error from '@/pages/Error'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
+import MyCarDetails from '@/pages/MyCarDetails'
 
 // Configure axios hooks
 configure({
@@ -36,6 +37,7 @@ function App(): ReactElement {
         <Route path={AppRoutes.myBookings} element={<ManageBookings />} />
         <Route path={AppRoutes.carDetail} element={<CarsDetails />} />
         <Route path={AppRoutes.seeMyCars} element={<SeeMyCars />} />
+        <Route path={AppRoutes.seeMyCarDetail} element={<MyCarDetails />} />
         <Route path={AppRoutes.myCarsBooking} element={<MyCarsBookings />} />
         <Route path={AppRoutes.addNewCars} element={<AddNewCar />} />
         <Route path={AppRoutes.showAllCars} element={<ShowAllCars />} />

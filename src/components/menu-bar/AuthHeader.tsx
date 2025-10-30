@@ -1,4 +1,6 @@
 import { AuthContextType } from '@/types/AuthTypes'
+import { Link } from 'react-router-dom'
+import { AppRoutes } from '@/types/AppRoutesType'
 import Logo from '@/assets/Logo'
 import ProfileIcon from '@/assets/ProfileIcon'
 import NavigationMenu from '@/components/menu-bar/NavigationMenu'
@@ -32,9 +34,9 @@ export default function AuthHeader({ loggedIn }: AuthContextType) {
       </header>
       {loggedIn && (
         <div className="relative flex justify-center">
-          <div className="fixed rounded-b-full bg-header-color py-5">
+          <Link to={AppRoutes.home} className="fixed rounded-b-full bg-header-color py-5">
             <Logo />
-          </div>
+          </Link>
         </div>
       )}
     </>

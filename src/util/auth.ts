@@ -2,9 +2,7 @@ export function getAuthToken(): string | null {
   return localStorage.getItem('token')
 }
 const API_BASE = 'https://carsharing-backend-production.up.railway.app'
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE3LCJpYXQiOjE3NjAzNjMyMzEsImV4cCI6MTc2MDQ0OTYzMX0.XfnFDcrMTjaCeLbjjyvJbb5YGTTZ7YovDyKwRVr7ogc'
-
+const token = getAuthToken()
 export async function fetchWithAuth(endpoint: string, options: RequestInit = {}) {
   const headers = {
     'Content-Type': 'application/json',
