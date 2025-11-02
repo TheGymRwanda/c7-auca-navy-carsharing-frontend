@@ -11,7 +11,7 @@ module.exports = {
         'primary-color': '#265e78',
         'header-color': 'rgb(31, 41, 55)',
         'warn-user': 'rgb(255, 165, 0)',
-        input: '#64A1C0',
+        inputs: '#64A1C0',
       },
     },
   },
