@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import CarInputs from './CarInputs'
 import { FaAngleDown } from 'react-icons/fa6'
 import Button from './ui/Button'
@@ -17,16 +17,16 @@ const CAR_TYPES = ['Sedan', 'SUV', 'Hatchback', 'Sports Car']
 const FUEL_TYPES = ['Petrol', 'Diesel', 'Electric']
 
 function NewCarForm() {
-  const [carName, setCarName] = React.useState<string>('')
-  const [typeName, setTypeName] = React.useState<string>('')
-  const [licensePlate, setLicensePlate] = React.useState<string>('')
-  const [horsePower, setHorsePower] = React.useState<string>('')
-  const [fuelType, setFuelType] = React.useState<string>('')
-  const [additionalInfo, setAdditionalInfo] = React.useState<string>('')
-  const [errors, setErrors] = React.useState<FormErrors>({})
-  const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false)
-  const [showTypeDropdown, setShowTypeDropdown] = React.useState<boolean>(false)
-  const [showFuelDropdown, setShowFuelDropdown] = React.useState<boolean>(false)
+  const [carName, setCarName] = useState<string>('')
+  const [typeName, setTypeName] = useState<string>('')
+  const [licensePlate, setLicensePlate] = useState<string>('')
+  const [horsePower, setHorsePower] = useState<string>('')
+  const [fuelType, setFuelType] = useState<string>('')
+  const [additionalInfo, setAdditionalInfo] = useState<string>('')
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [showTypeDropdown, setShowTypeDropdown] = useState<boolean>(false)
+  const [showFuelDropdown, setShowFuelDropdown] = useState<boolean>(false)
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
@@ -138,7 +138,7 @@ function NewCarForm() {
   }
 
   const handleHorsePowerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/[^0-9]/g, '') // Only allow numbers
+    const value = e.target.value.replace(/[^0-9]/g, '')
     setHorsePower(value)
     if (errors.horsePower) {
       setErrors(prev => ({ ...prev, horsePower: undefined }))
@@ -161,7 +161,7 @@ function NewCarForm() {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = () => {
       setShowTypeDropdown(false)
       setShowFuelDropdown(false)
@@ -204,7 +204,7 @@ function NewCarForm() {
             placeholder="Select car type"
             value={typeName}
             readOnly
-            className="flex-1 bg-transparent text-white outline-none placeholder:text-white/80 placeholder:text-left font-sans cursor-pointer" // Changed to text-white
+            className="flex-1 bg-transparent text-white outline-none placeholder:text-white/80 placeholder:text-left font-sans cursor-pointer"
           />
           <FaAngleDown
             className={`text-white ml-2 transition-transform ${
