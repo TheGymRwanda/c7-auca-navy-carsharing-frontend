@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 
 import useAllCars from '@/hooks/useAllCars'
 import { ChevronBackIcon } from '@/assets/ChevronBackIcon'

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 
 import { useUser } from '@/hooks'
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 import { AppRoutes } from '@/types/AppRoutesType'
 
 import AuthenticatedContainer from '@/components/container/AuthenticatedContainer'

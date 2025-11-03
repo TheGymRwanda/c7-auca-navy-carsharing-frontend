@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Menu, MenuButton, MenuItems } from '@headlessui/react'
 
 import { AppRoutes } from '@/types/AppRoutesType'
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 import NavigationMenuTransition from '@/components/menu-bar/NavigationMenuTransition'
 import MenuLink from '@/components/menu-bar/MenuLink'
 import CarIcon from '@/assets/CarIcon'

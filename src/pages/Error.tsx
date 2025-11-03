@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 import { useNavigate } from 'react-router-dom'
 import { AppRoutes } from '@/types/AppRoutesType'
 import Button from '@/components/ui/Button'

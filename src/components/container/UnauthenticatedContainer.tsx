@@ -1,7 +1,7 @@
 import { PropsWithChildren, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 import { AppRoutes } from '@/types/AppRoutesType'
 
 export default function UnauthenticatedContainer({ children }: PropsWithChildren) {

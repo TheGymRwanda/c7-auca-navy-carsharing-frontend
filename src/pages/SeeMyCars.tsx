@@ -3,7 +3,7 @@ import { ReactNode, SyntheticEvent, useContext, useEffect, useState } from 'reac
 import useAxios from 'axios-hooks'
 
 import { useCars, useCarTypes, useUser } from '@/hooks'
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 
 import AuthenticatedContainer from '@/components/container/AuthenticatedContainer'
 import PageHeading from '@/components/ui/PageHeading'

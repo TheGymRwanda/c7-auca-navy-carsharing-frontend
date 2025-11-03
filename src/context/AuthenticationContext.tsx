@@ -16,7 +16,7 @@ export const AuthContext = createContext<AuthContextType>({
   userId: 17,
 })
 
-export default function LoggedInAuthContext({ children }: PropsWithChildren) {
+export default function AuthenticationContext({ children }: PropsWithChildren) {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null,
   )

@@ -46,7 +46,7 @@ export default function CarDetails() {
         <h1 className="mx-auto mt-14 font-lora text-2xl">DETAILS</h1>
       </div>
 
-      <div className="mt-6 mx-auto">
+      <div className="mx-auto mt-6">
         <img
           src={carTypeDetails.imageUrl || '/placeholder-car.png'}
           alt={car.name}
@@ -54,7 +54,7 @@ export default function CarDetails() {
         />
       </div>
 
-      <div className="mt-6 w-full max-w-xl mx-auto space-y-3 px-6 text-left">
+      <div className="mx-auto mt-6 w-full max-w-xl space-y-3 px-6 text-left">
         <h2 className="font-lora text-lg">{car.name}</h2>
 
         <div className="flex flex-col md:flex-row md:space-x-32">
@@ -71,7 +71,7 @@ export default function CarDetails() {
           </div>
         </div>
 
-        <div className="flex gap-4 my-4 md:w-5/6">
+        <div className="my-4 flex gap-4 md:w-5/6">
           <Button title="Edit Car" variant="filled" to={`/cars/owned/${id}/edit`} />
           <Button title="Delete Car" variant="outlined" to={`/cars/owned/${id}/edit`} />
         </div>
