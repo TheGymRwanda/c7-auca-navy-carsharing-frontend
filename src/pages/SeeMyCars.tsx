@@ -1,11 +1,10 @@
-import { ReactNode, SyntheticEvent, useContext, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 
 import useAxios from 'axios-hooks'
 
-import { useCars, useCarTypes, useUser } from '@/hooks'
-import { AuthContext } from '@/context/AuthenticationContext'
+import { useCars, useCarTypes } from '@/hooks'
 
-import AuthenticatedContainer from '@/components/container/AuthenticatedContainer'
+import PageContainer from '@/components/container/PageContainer'
 import PageHeading from '@/components/ui/PageHeading'
 import { apiUrl } from '@/util/apiUrl'
 import WarnUserDialog from '@/components/ui/WarnUserDialog'
@@ -18,8 +17,7 @@ export default function SeeMyCars() {
   const [showDeleteWarning, setShowDeleteCarWarning] = useState(false)
   const [showInfoDialog, setShowInfoDialog] = useState(false)
   const [selectedDeleteCarId, setSelectedDeleteCarId] = useState<number | undefined>(undefined)
-  const { logout, userId } = useContext(AuthContext)
-  const [{ error }] = useUser(userId)
+
   const [{ data: carData, loading: loadingCarData }, refetchCars] = useCars()
   const [{ data: carType, loading: loadingCarsTypes }] = useCarTypes()
   const [{ error: errorDeletingCar }, executeDeleteCars] = useAxios(
@@ -29,13 +27,13 @@ export default function SeeMyCars() {
     { manual: true },
   )
 
-  function handleDeleteWarning(evnt?: SyntheticEvent) {
+  function handleDeleteWarning(event?: MouseEvent) {
     setShowDeleteCarWarning(true)
+    const btnEvent = event?.currentTarget as HTMLButtonElement
     const carId = carData?.filter(
       car =>
         car.name ===
-        evnt?.currentTarget.previousElementSibling?.firstElementChild?.nextSibling?.firstChild
-          ?.textContent,
+        btnEvent?.previousElementSibling?.firstElementChild?.nextSibling?.firstChild?.textContent,
     )[0]?.id
     setSelectedDeleteCarId(carId)
   }
@@ -57,7 +55,6 @@ export default function SeeMyCars() {
     }
   }, [errorDeletingCar])
 
-  if (error?.status === 400) logout?.()
   useEffect(() => {
     if (!loadingCarsTypes && !loadingCarData) {
       const carsInfo = carData?.map(car => {
@@ -86,7 +83,7 @@ export default function SeeMyCars() {
     }
   }, [carData, carType])
   return (
-    <AuthenticatedContainer>
+    <PageContainer>
       <PageHeading name="See my car" />
       {loadingCarData ? <h1>Loading Cars....</h1> : cars}
       {showDeleteWarning && (
@@ -103,6 +100,6 @@ export default function SeeMyCars() {
           message={errorDeletingCar?.response?.data?.message}
         />
       )}
-    </AuthenticatedContainer>
+    </PageContainer>
   )
 }

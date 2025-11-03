@@ -1,22 +1,18 @@
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import { AuthContext } from '@/context/AuthenticationContext'
 
 import useAllCars from '@/hooks/useAllCars'
 import { ChevronBackIcon } from '@/assets/ChevronBackIcon'
 import AllCarsCard from '@/components/ui/AllCarsCard'
+import PageContainer from '@/components/container/PageContainer'
 
 export default function ShowAllCars() {
   const navigate = useNavigate()
-  const { logout } = useContext(AuthContext)
-  const { carsList, loading, error } = useAllCars()
+  const { carsList, loading } = useAllCars()
 
   if (loading) return <p className="mt-10 text-center">Loading car details...</p>
-  if (error) logout?.()
 
   return (
-    <main className="mx-auto flex min-h-screen flex-col gap-8 py-20 text-center font-lora text-gray-100">
+    <PageContainer>
       <div className="flex w-full items-center gap-2 px-6">
         <button onClick={() => navigate(-1)}>
           <ChevronBackIcon />
@@ -36,6 +32,6 @@ export default function ShowAllCars() {
           />
         ))}
       </div>
-    </main>
+    </PageContainer>
   )
 }

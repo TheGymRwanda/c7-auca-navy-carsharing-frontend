@@ -26,7 +26,7 @@ configure({
   },
 })
 
-function App(): ReactElement {
+export default function App(): ReactElement {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route element={<Layout />}>
@@ -48,5 +48,3 @@ function App(): ReactElement {
 
   return <RouterProvider router={router} />
 }
-
-export default App
