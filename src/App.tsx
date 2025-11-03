@@ -18,6 +18,7 @@ import Error from '@/pages/Error'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import MyCarDetails from '@/pages/MyCarDetails'
+import ProtectedRoute from '@/util/ProtectedRoute'
 
 // Configure axios hooks
 configure({
@@ -32,15 +33,78 @@ export default function App(): ReactElement {
       <Route element={<Layout />}>
         <Route index element={<Landing />} />
         <Route path={AppRoutes.login} element={<Login />} />
-        <Route path={AppRoutes.home} element={<Home />} />
-        <Route path={AppRoutes.bookCar} element={<NewBooking />} />
-        <Route path={AppRoutes.myBookings} element={<ManageBookings />} />
-        <Route path={AppRoutes.carDetail} element={<CarsDetails />} />
-        <Route path={AppRoutes.seeMyCars} element={<SeeMyCars />} />
-        <Route path={AppRoutes.seeMyCarDetail} element={<MyCarDetails />} />
-        <Route path={AppRoutes.myCarsBooking} element={<MyCarsBookings />} />
-        <Route path={AppRoutes.addNewCars} element={<AddNewCar />} />
-        <Route path={AppRoutes.showAllCars} element={<ShowAllCars />} />
+        <Route
+          path={AppRoutes.home}
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={AppRoutes.bookCar}
+          element={
+            <ProtectedRoute>
+              <NewBooking />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={AppRoutes.myBookings}
+          element={
+            <ProtectedRoute>
+              <ManageBookings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={AppRoutes.carDetail}
+          element={
+            <ProtectedRoute>
+              <CarsDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={AppRoutes.seeMyCars}
+          element={
+            <ProtectedRoute>
+              <SeeMyCars />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={AppRoutes.seeMyCarDetail}
+          element={
+            <ProtectedRoute>
+              <MyCarDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={AppRoutes.myCarsBooking}
+          element={
+            <ProtectedRoute>
+              <MyCarsBookings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={AppRoutes.addNewCars}
+          element={
+            <ProtectedRoute>
+              <AddNewCar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={AppRoutes.showAllCars}
+          element={
+            <ProtectedRoute>
+              <ShowAllCars />
+            </ProtectedRoute>
+          }
+        />
         <Route path={AppRoutes.notFoundPage} element={<Error />} />
       </Route>,
     ),

@@ -16,9 +16,9 @@ export default function Login() {
   const navigate = useNavigate()
   useEffect(() => {
     if (loggedIn) {
-      navigate(AppRoutes.home)
+      return navigate(AppRoutes.home)
     }
-  }, [loadingAuth])
+  }, [loggedIn])
   return (
     <PageContainer>
       <Hero />
