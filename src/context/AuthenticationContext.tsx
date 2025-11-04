@@ -13,7 +13,6 @@ export const AuthContext = createContext<AuthContextType>({
   logout: () => {},
   loadingAuth: false,
   errorLogin: false,
-  userId: 17,
 })
 
 export default function AuthenticationContext({ children }: AuthContextChildren) {
@@ -28,7 +27,7 @@ export default function AuthenticationContext({ children }: AuthContextChildren)
     },
     { manual: true },
   )
-  const [userId, setUserId] = useState(17)
+
   const navigate = useNavigate()
 
   const login = (event: FormEvent) => {
@@ -54,7 +53,6 @@ export default function AuthenticationContext({ children }: AuthContextChildren)
       setLoggedIn(
         localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null,
       )
-      setUserId(data?.userId)
     }
   }, [data, error])
   const logout = () => {
@@ -65,7 +63,7 @@ export default function AuthenticationContext({ children }: AuthContextChildren)
   const loadingAuth = loading
 
   return (
-    <AuthContext.Provider value={{ loggedIn, login, loadingAuth, logout, errorLogin, userId }}>
+    <AuthContext.Provider value={{ loggedIn, login, loadingAuth, logout, errorLogin }}>
       {children}
     </AuthContext.Provider>
   )

@@ -6,7 +6,6 @@ export type AuthContextType = {
   logout?: () => void
   loadingAuth?: boolean
   errorLogin?: boolean
-  userId?: number
 }
 
 export type AuthContextChildren = {

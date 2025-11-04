@@ -8,7 +8,6 @@ import { AppRoutes } from '@/types/AppRoutesType'
 import Layout from '@/components/Layout'
 import Landing from '@/pages/Landing'
 import CarsDetails from '@/pages/CarsDetails'
-import NewBooking from '@/pages/NewBooking'
 import MyCarsBookings from '@/pages/MyCarsBooking'
 import SeeMyCars from '@/pages/SeeMyCars'
 import ManageBookings from '@/pages/ManageBookings'
@@ -45,7 +44,7 @@ export default function App(): ReactElement {
           path={AppRoutes.bookCar}
           element={
             <ProtectedRoute>
-              <NewBooking />
+              <ShowAllCars />
             </ProtectedRoute>
           }
         />
@@ -94,14 +93,6 @@ export default function App(): ReactElement {
           element={
             <ProtectedRoute>
               <AddNewCar />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={AppRoutes.showAllCars}
-          element={
-            <ProtectedRoute>
-              <ShowAllCars />
             </ProtectedRoute>
           }
         />
