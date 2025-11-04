@@ -28,7 +28,7 @@ export default function AllCarsCard({
             <CarIcon />
             <h2>{type}</h2>
           </div>
-          <Link to={`/cars/${id}`} className="font-bold text-[#f8fcad]">
+          <Link to={`${id}`} className="font-bold text-[#f8fcad]">
             Show details
           </Link>
         </div>
