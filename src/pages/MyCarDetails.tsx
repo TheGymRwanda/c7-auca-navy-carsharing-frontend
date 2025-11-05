@@ -1,67 +1,57 @@
-import { useMemo } from 'react'
-import { useParams } from 'react-router-dom'
-import useAxios from 'axios-hooks'
-import Error from '@/pages/Error'
+import { useLocation, useNavigate } from 'react-router-dom'
+import PageHeading from '@/components/ui/PageHeading'
+import MyCarDetailsItem from '@/components/ui/MyCarDetailsItem'
 import ProfileIcon from '@/assets/ProfileIcon'
 import CarIcon from '@/assets/CarIcon'
 import HorseIcon from '@/assets/HorseIcon'
 import FuelIcon from '@/assets/FuelIcon'
-import Attention from '@/assets/Attention.png'
 import licenseplate from '@/assets/LicensePlate.png'
-import MyCarDetailsItem from '@/components/ui/MyCarDetailsItem'
-import { Car } from '@/types/CarTypes'
-import { apiUrl } from '@/util/apiUrl'
-import { useCarTypes } from '@/hooks'
-import { getAuthToken } from '@/util/auth'
-import PageHeading from '@/components/ui/PageHeading'
+import Attention from '@/assets/Attention.png'
 import PageContainer from '@/components/container/PageContainer'
 
-export default function CarDetails() {
-  const { id } = useParams()
+export default function MyCarDetails() {
+  const { state } = useLocation()
+  const navigate = useNavigate()
+  const car = state?.car
 
-  const [{ data: car, loading, error }] = useAxios<Car>({
-    url: `${apiUrl}/cars/${id}`,
-    headers: { Authorization: `Bearer ${getAuthToken()}` },
-  })
-
-  const [{ data: carTypes }] = useCarTypes()
-
-  const carTypeDetails = useMemo(() => {
-    if (!car || !carTypes) return undefined
-    const foundType = carTypes.find(t => t.id === Number(car.carTypeId))
-    return foundType ? { imageUrl: foundType.imageUrl, name: foundType.name } : undefined
-  }, [car, carTypes])
-
-  if (loading) return <p className="mt-10 text-center text-white">Loading car details...</p>
-  if (error || !car) return <Error />
-  if (!carTypeDetails) return <p className="mt-10 text-center text-gray-300">Car type not found.</p>
+  if (!car) {
+    return (
+      <div className="text-center text-white py-20">
+        <h1>Car details not found</h1>
+        <button onClick={() => navigate(-1)} className="mt-4 underline">
+          Go Back
+        </button>
+      </div>
+    )
+  }
 
   return (
     <PageContainer>
-      <div className="flex lg:w-1/2 lg:mx-auto w-full items-center justify-center ">
-        <PageHeading name="Details" back={true} />
+      <div className="flex lg:w-1/2 lg:mx-auto w-full items-center justify-center">
+        <PageHeading name={`Details`} back={true} />
       </div>
-      <div className="mx-auto">
+
+      <div className="mx-auto mt-6">
         <img
-          src={carTypeDetails.imageUrl || '/placeholder-car.png'}
+          src={car.imageUrl || '/placeholder-car.png'}
           alt={car.name}
           className="max-h-64 rounded-xl object-cover"
         />
       </div>
 
-      <div className="mx-auto w-full max-w-xl space-y-3 px-6 text-left">
+      <div className="md:w-max md:mx-auto space-y-3 px-6 text-left">
         <h2 className="font-lora text-lg">{car.name}</h2>
 
         <div className="flex flex-col md:flex-row md:space-x-32">
           <div className="space-y-2">
-            <MyCarDetailsItem title={car.ownerId} icon={<ProfileIcon />} />
-            <MyCarDetailsItem title={carTypeDetails.name} icon={<CarIcon />} />
-            <MyCarDetailsItem title={car.licensePlate} img={licenseplate} />
+            <MyCarDetailsItem title="You" icon={<ProfileIcon />} />
+            <MyCarDetailsItem title={car.type} icon={<CarIcon />} />
+            <MyCarDetailsItem title={car.licensePlate || 'N/A'} img={licenseplate} />
           </div>
 
           <div className="space-y-2">
-            <MyCarDetailsItem title={car.horsepower} icon={<HorseIcon />} />
-            <MyCarDetailsItem title={car.fuelType} icon={<FuelIcon />} />
+            <MyCarDetailsItem title={car.horsepower || 'N/A'} icon={<HorseIcon />} />
+            <MyCarDetailsItem title={car.fuelType || 'N/A'} icon={<FuelIcon />} />
             {car.state && <MyCarDetailsItem title={car.state} img={Attention} />}
           </div>
         </div>

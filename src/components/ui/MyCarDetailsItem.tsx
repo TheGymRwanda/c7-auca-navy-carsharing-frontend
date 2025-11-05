@@ -1,5 +1,5 @@
 interface DetailItemProps {
-  title: string
+  title: string | number
   icon?: React.ReactNode
   img?: string
 }

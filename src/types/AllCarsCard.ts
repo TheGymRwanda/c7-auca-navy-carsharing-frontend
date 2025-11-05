@@ -1,10 +1,9 @@
 export type AllCarsCardProps = {
-  id: string | number
   name: string
   imageUrl: string
-  owner: string
   type: string
-  showDeleteBtn?: boolean
+  horsepower?: number
   onclick?: () => void
   imageAltText?: string
+  onSeeDetails?: () => void
 }

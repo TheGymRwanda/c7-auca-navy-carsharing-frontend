@@ -3,7 +3,7 @@ export interface Car {
   name: string
   ownerId: string
   model: string
-  licensePlate: string
+  licensePlate?: string | null
   horsepower: string
   fuelType: string
   state?: string
@@ -24,4 +24,18 @@ export interface User {
 export interface CarWithDetails extends Car {
   typeData?: CarType | null
   ownerData?: User | null
+}
+
+export interface MyCarDetails {
+  id: number
+  name: string
+  ownerId: number
+  carTypeName?: string
+  licensePlate?: string | null
+  horsepower?: number
+  fuelType: string
+  state?: string
+  type: string
+  imageUrl: string
+  imageAltText: string
 }
