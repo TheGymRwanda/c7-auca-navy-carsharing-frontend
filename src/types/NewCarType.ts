@@ -1,4 +1,4 @@
- export default interface FormErrors {
+export default interface FormErrors {
   carName?: string
   typeName?: string
   licensePlate?: string

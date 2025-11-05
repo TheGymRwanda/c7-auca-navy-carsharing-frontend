@@ -1,6 +1,6 @@
 import CarInputs from './CarInputs'
 import ErrorMessage from './ErrorMessage'
-import  NewCarType  from '../types/NewCarType'
+import NewCarType from '../types/NewCarType'
 
 interface HorsePowerLicensePlateProps {
   licensePlate: string
@@ -15,7 +15,7 @@ export default function HorsePowerLicensePlate({
   horsePower,
   errors,
   onLicensePlateChange,
-  onHorsePowerChange
+  onHorsePowerChange,
 }: HorsePowerLicensePlateProps) {
   return (
     <div className="flex flex-wrap gap-4 w-5/6 md:w-2/3 lg:w-1/2 mx-auto">
@@ -46,4 +46,3 @@ export default function HorsePowerLicensePlate({
     </div>
   )
 }
-

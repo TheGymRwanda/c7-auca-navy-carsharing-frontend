@@ -160,7 +160,6 @@ function NewCarForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      
       <CarInputs
         label="Name"
         value={carName}
@@ -169,12 +168,11 @@ function NewCarForm() {
         className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto"
         required
       />
-      <ErrorMessage 
-        message={errors.carName} 
-        className="text-center w-5/6 md:w-2/3 lg:w-1/2 mx-auto" 
+      <ErrorMessage
+        message={errors.carName}
+        className="text-center w-5/6 md:w-2/3 lg:w-1/2 mx-auto"
       />
 
-      
       <div className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto text-left relative">
         <label className="block text-white mb-2 ml-1 font-sans">
           Type <span className="text-red-400">*</span>
@@ -225,7 +223,6 @@ function NewCarForm() {
         onHorsePowerChange={handleHorsePowerChange}
       />
 
-      
       <div className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto text-left relative">
         <label className="block text-white mb-2 ml-1 font-sans">
           Fuel Type <span className="text-red-400">*</span>
@@ -268,7 +265,6 @@ function NewCarForm() {
         <ErrorMessage message={errors.fuelType} className="ml-1" />
       </div>
 
-      
       <CarInputs
         label="Additional Info"
         value={additionalInfo}

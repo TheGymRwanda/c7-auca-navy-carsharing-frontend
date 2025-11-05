@@ -15,8 +15,8 @@ export default function AddNewCar() {
   if (error?.status === 400) logout?.()
   return (
     <AuthenticatedContainer>
-     <PageHeading name="Add New Car" />
+      <PageHeading name="Add New Car" />
       <NewCarForm />
-     </AuthenticatedContainer>
+    </AuthenticatedContainer>
   )
 }
