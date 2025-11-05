@@ -1,35 +1,30 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import CarInputs from './CarInputs'
+import ErrorMessage from './ErrorMessage'
+import HorsePowerLicensePlate from './HorsePowerLicensePlate'
 import { FaAngleDown } from 'react-icons/fa6'
 import Button from './ui/Button'
-
-interface FormErrors {
-  carName?: string
-  typeName?: string
-  licensePlate?: string
-  horsePower?: string
-  fuelType?: string
-  additionalInfo?: string
-}
+import NewCarType from '../types/NewCarType'
 
 const CAR_TYPES = ['Sedan', 'SUV', 'Hatchback', 'Sports Car']
-
 const FUEL_TYPES = ['Petrol', 'Diesel', 'Electric']
 
 function NewCarForm() {
+  const navigate = useNavigate()
   const [carName, setCarName] = useState<string>('')
   const [typeName, setTypeName] = useState<string>('')
   const [licensePlate, setLicensePlate] = useState<string>('')
   const [horsePower, setHorsePower] = useState<string>('')
   const [fuelType, setFuelType] = useState<string>('')
   const [additionalInfo, setAdditionalInfo] = useState<string>('')
-  const [errors, setErrors] = useState<FormErrors>({})
+  const [errors, setErrors] = useState<NewCarType>({})
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const [showTypeDropdown, setShowTypeDropdown] = useState<boolean>(false)
   const [showFuelDropdown, setShowFuelDropdown] = useState<boolean>(false)
 
   const validateForm = (): boolean => {
-    const newErrors: FormErrors = {}
+    const newErrors: NewCarType = {}
 
     if (!carName.trim()) {
       newErrors.carName = 'Car name is required'
@@ -108,19 +103,11 @@ function NewCarForm() {
   }
 
   const handleCancel = () => {
-    setCarName('')
-    setTypeName('')
-    setLicensePlate('')
-    setHorsePower('')
-    setFuelType('')
-    setAdditionalInfo('')
-    setErrors({})
-    setShowTypeDropdown(false)
-    setShowFuelDropdown(false)
+    navigate('/SeeMyCars')
   }
 
   const handleInputChange =
-    (setter: React.Dispatch<React.SetStateAction<string>>, field: keyof FormErrors) =>
+    (setter: React.Dispatch<React.SetStateAction<string>>, field: keyof NewCarType) =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setter(e.target.value)
 
@@ -173,6 +160,7 @@ function NewCarForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      
       <CarInputs
         label="Name"
         value={carName}
@@ -181,12 +169,12 @@ function NewCarForm() {
         className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto"
         required
       />
-      {errors.carName && (
-        <p className="text-red-400 text-sm mt-1 text-center w-5/6 md:w-2/3 lg:w-1/2 mx-auto">
-          {errors.carName}
-        </p>
-      )}
+      <ErrorMessage 
+        message={errors.carName} 
+        className="text-center w-5/6 md:w-2/3 lg:w-1/2 mx-auto" 
+      />
 
+      
       <div className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto text-left relative">
         <label className="block text-white mb-2 ml-1 font-sans">
           Type <span className="text-red-400">*</span>
@@ -226,40 +214,18 @@ function NewCarForm() {
             ))}
           </div>
         )}
-        {errors.typeName && <p className="text-red-400 text-sm mt-1 ml-1">{errors.typeName}</p>}
+        <ErrorMessage message={errors.typeName} className="ml-1" />
       </div>
 
-      <div className="flex flex-wrap gap-4 w-5/6 md:w-2/3 lg:w-1/2 mx-auto">
-        <div className="flex-1 min-w-[250px]">
-          <CarInputs
-            label="License Plate"
-            value={licensePlate}
-            onChange={handleLicensePlateChange}
-            placeholder="e.g M-XY 123"
-            className="w-full"
-            required
-          />
-          {errors.licensePlate && (
-            <p className="text-red-400 text-sm mt-1 ml-1">{errors.licensePlate}</p>
-          )}
-        </div>
+      <HorsePowerLicensePlate
+        licensePlate={licensePlate}
+        horsePower={horsePower}
+        errors={errors}
+        onLicensePlateChange={handleLicensePlateChange}
+        onHorsePowerChange={handleHorsePowerChange}
+      />
 
-        <div className="flex-1 min-w-[250px]">
-          <CarInputs
-            label="Horse Power"
-            type="text"
-            value={horsePower}
-            onChange={handleHorsePowerChange}
-            placeholder="e.g 150"
-            className="w-full"
-            required
-          />
-          {errors.horsePower && (
-            <p className="text-red-400 text-sm mt-1 ml-1">{errors.horsePower}</p>
-          )}
-        </div>
-      </div>
-
+      
       <div className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto text-left relative">
         <label className="block text-white mb-2 ml-1 font-sans">
           Fuel Type <span className="text-red-400">*</span>
@@ -277,7 +243,7 @@ function NewCarForm() {
             placeholder="Select fuel type"
             value={fuelType}
             readOnly
-            className="flex-1 bg-transparent text-white outline-none placeholder:text-white/80 placeholder:text-left font-sans cursor-pointer" // Changed to text-white
+            className="flex-1 bg-transparent text-white outline-none placeholder:text-white/80 placeholder:text-left font-sans cursor-pointer"
           />
           <FaAngleDown
             className={`text-white ml-2 transition-transform ${
@@ -299,9 +265,10 @@ function NewCarForm() {
             ))}
           </div>
         )}
-        {errors.fuelType && <p className="text-red-400 text-sm mt-1 ml-1">{errors.fuelType}</p>}
+        <ErrorMessage message={errors.fuelType} className="ml-1" />
       </div>
 
+      
       <CarInputs
         label="Additional Info"
         value={additionalInfo}

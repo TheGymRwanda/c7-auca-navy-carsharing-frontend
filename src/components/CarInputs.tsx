@@ -30,7 +30,7 @@ function CarInputs({
         {label}
         {required && <span className="text-red-400 ml-1">*</span>}
       </label>
-      <div className="flex items-center rounded-full bg-inputs px-6 py-5">
+      <div className="flex items-center rounded-full bg-input  px-6 py-5">
         <input
           type={type}
           placeholder={placeholder}
