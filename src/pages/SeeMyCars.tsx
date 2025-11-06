@@ -12,10 +12,10 @@ import InformUserDialog from '@/components/ui/InformUserDialog'
 import { deleteWarning } from '@/util/seeMyCars'
 import useAuth from '@/hooks/useAuth'
 import { useDeleteCar } from '@/hooks/useDeleteCar'
-import { FullCarInfo } from '@/util/api'
+import { CarDto } from '@/util/api'
 
 export default function SeeMyCars() {
-  const [cars, setCars] = useState<FullCarInfo[]>([])
+  const [cars, setCars] = useState<CarDto[]>([])
   const [showDeleteWarning, setShowDeleteCarWarning] = useState(false)
   const [showInfoDialog, setShowInfoDialog] = useState(false)
   const [selectedDeleteCarId, setSelectedDeleteCarId] = useState<number | undefined>(undefined)
@@ -69,7 +69,7 @@ export default function SeeMyCars() {
     }
   }, [carData, carType])
 
-  function handleSeeDetails(car: FullCarInfo) {
+  function handleSeeDetails(car: CarDto) {
     navigate(`${car.id}`, {
       state: { car, imageUrl: carType && carType.find(t => t.id === car.carTypeId)?.imageUrl },
     })
