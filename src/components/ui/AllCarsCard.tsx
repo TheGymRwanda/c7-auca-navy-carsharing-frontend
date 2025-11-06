@@ -12,15 +12,16 @@ export default function AllCarsCard({
   onclick,
   imageAltText,
   onSeeDetails,
+  btnTitle,
 }: AllCarsCardProps) {
   return (
-    <div className="bg-[#3e7591] px-4 py-2 rounded-lg">
-      <div className="h-56 w-full flex justify-center rounded-[10px]">
+    <div className="rounded-lg bg-[#3e7591] px-4 py-2">
+      <div className="flex h-56 w-full justify-center rounded-[10px]">
         <img src={imageUrl} alt={imageAltText} className="h-full w-auto rounded-md" />
         <div className="flex h-full flex-col justify-around px-4">
           <h1 className="text-start text-2xl font-bold text-white">{name}</h1>
           <MyCarDetailsItem title={type} icon={<CarIcon />} />
-          <MyCarDetailsItem title={horsepower || 'N/A'} icon={<HorseIcon />} />
+          <MyCarDetailsItem title={horsepower} icon={<HorseIcon />} />
 
           <button onClick={onSeeDetails} className="font-bold text-[#f8fcad]">
             See Car Details
@@ -28,7 +29,15 @@ export default function AllCarsCard({
         </div>
       </div>
 
-      <Button title="Delete" className="border-warn-user text-yellow-500 mt-3" onClick={onclick} />
+      {btnTitle === 'Delete' ? (
+        <Button
+          title={btnTitle}
+          className="mt-3 border-warn-user text-yellow-500"
+          onClick={onclick}
+        />
+      ) : (
+        <Button title={btnTitle} variant="filled" onClick={onclick} />
+      )}
     </div>
   )
 }

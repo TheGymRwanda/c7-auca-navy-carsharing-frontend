@@ -6,6 +6,6 @@ import useAxios from 'axios-hooks'
 export default function useCarTypes() {
   return useAxios<CarTypeDto[]>({
     headers: { Authorization: `Bearer ${getAuthToken()}` },
-    url: `${apiUrl}/car-types`,
+    url: `${apiUrl}/car-types/`,
   })
 }

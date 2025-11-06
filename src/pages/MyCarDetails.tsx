@@ -16,7 +16,7 @@ export default function MyCarDetails() {
 
   if (!car) {
     return (
-      <div className="text-center text-white py-20">
+      <div className="py-20 text-center text-white">
         <h1>Car details not found</h1>
         <button onClick={() => navigate(-1)} className="mt-4 underline">
           Go Back
@@ -27,19 +27,15 @@ export default function MyCarDetails() {
 
   return (
     <PageContainer>
-      <div className="flex lg:w-1/2 lg:mx-auto w-full items-center justify-center">
+      <div className="flex w-full items-center justify-center lg:mx-auto lg:w-1/2">
         <PageHeading name={`Details`} back={true} />
       </div>
 
       <div className="mx-auto mt-6">
-        <img
-          src={car.imageUrl || '/placeholder-car.png'}
-          alt={car.name}
-          className="max-h-64 rounded-xl object-cover"
-        />
+        <img src={state?.imageUrl} alt={car.name} className="max-h-64 rounded-xl object-cover" />
       </div>
 
-      <div className="md:w-max md:mx-auto space-y-3 px-6 text-left">
+      <div className="space-y-3 px-6 text-left md:mx-auto md:w-max">
         <h2 className="font-lora text-lg">{car.name}</h2>
 
         <div className="flex flex-col md:flex-row md:space-x-32">

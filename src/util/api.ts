@@ -32,6 +32,10 @@ interface CarDto {
   state: CarState
 }
 
+export interface FullCarInfo extends CarDto {
+  imageUrl: string
+}
+
 interface NewCarDto {
   name: string
   userId: number

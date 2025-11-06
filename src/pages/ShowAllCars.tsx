@@ -43,6 +43,7 @@ export default function ShowAllCars() {
                 name={car.name}
                 owner={car.ownerData.name}
                 type={car.typeData.name}
+                btnTitle="Book Car"
               />
             ))}
           </div>

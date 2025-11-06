@@ -6,13 +6,13 @@ export default function PageHeading({ name, back = false }: { name: string; back
   const navigate = useNavigate()
 
   return (
-    <div className="w-full md:w-1/2 md:mx-auto py-8 flex items-center">
+    <div className="flex w-full items-center py-8 md:mx-auto md:w-1/2">
       {back && (
-        <button onClick={() => navigate(-1)} className="w-[7%] ml-8 md:-ml-8">
+        <button onClick={() => navigate(-1)} className="ml-8 w-[7%] md:-ml-8">
           <ChevronBackIcon />
         </button>
       )}
-      <p className={clsx('text-5xl w-[93%] md:ml-0', back && '-ml-[9%]')}>{name}</p>
+      <p className={clsx('w-[93%] text-5xl md:ml-0', back && 'ml-[9%]')}>{name}</p>
     </div>
   )
 }
