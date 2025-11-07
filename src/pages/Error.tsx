@@ -1,10 +1,11 @@
 import { useContext } from 'react'
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 import { useNavigate } from 'react-router-dom'
 import { AppRoutes } from '@/types/AppRoutesType'
 import Button from '@/components/ui/Button'
 import PageHeading from '@/components/ui/PageHeading'
 import ErrorCar from '@/assets/ErrorCar'
+import PageContainer from '@/components/container/PageContainer'
 
 export default function Error() {
   const { loggedIn } = useContext(AuthContext)
@@ -19,7 +20,7 @@ export default function Error() {
   }
 
   return (
-    <div className="mx-auto flex min-h-screen flex-col gap-8 py-20 text-center font-lora text-gray-100">
+    <PageContainer>
       <PageHeading name="OOOOOPS!" />
       <ErrorCar className="mx-auto" />
       <p className="py-6 text-2xl">
@@ -34,6 +35,6 @@ export default function Error() {
       </p>
 
       <Button title="Go Back" onClick={handleNavigation} />
-    </div>
+    </PageContainer>
   )
 }

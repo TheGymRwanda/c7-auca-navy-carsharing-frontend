@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 import AuthHeader from '@/components/menu-bar/AuthHeader'
 
 export default function Header() {

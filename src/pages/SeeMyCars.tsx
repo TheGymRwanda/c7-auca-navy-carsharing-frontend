@@ -1,45 +1,38 @@
-import { ReactNode, SyntheticEvent, useContext, useEffect, useState } from 'react'
-
-import useAxios from 'axios-hooks'
-
-import { useCars, useCarTypes, useUser } from '@/hooks'
-import { AuthContext } from '@/context/LoggedInAuthContext'
-
-import AuthenticatedContainer from '@/components/container/AuthenticatedContainer'
+import { useEffect, useState, useContext } from 'react'
+import { useCars, useCarTypes } from '@/hooks'
+import { useNavigate } from 'react-router-dom'
+import PageContainer from '@/components/container/PageContainer'
+import { AuthContext } from '@/context/AuthenticationContext'
 import PageHeading from '@/components/ui/PageHeading'
 import { apiUrl } from '@/util/apiUrl'
 import WarnUserDialog from '@/components/ui/WarnUserDialog'
 import { getAuthToken } from '@/util/auth'
 import AllCarsCard from '@/components/ui/AllCarsCard'
 import InformUserDialog from '@/components/ui/InformUserDialog'
+import { deleteWarning } from '@/util/seeMyCars'
+import useAuth from '@/hooks/useAuth'
+import { useDeleteCar } from '@/hooks/useDeleteCar'
+import { CarDto } from '@/util/api'
 
 export default function SeeMyCars() {
-  const [cars, setCars] = useState<ReactNode>()
+  const [cars, setCars] = useState<CarDto[]>([])
   const [showDeleteWarning, setShowDeleteCarWarning] = useState(false)
   const [showInfoDialog, setShowInfoDialog] = useState(false)
   const [selectedDeleteCarId, setSelectedDeleteCarId] = useState<number | undefined>(undefined)
-  const { logout, userId } = useContext(AuthContext)
-  const [{ error }] = useUser(userId)
+  const { logout } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const [{ error: authError, loading: loadAuth, data: userData }] = useAuth()
   const [{ data: carData, loading: loadingCarData }, refetchCars] = useCars()
   const [{ data: carType, loading: loadingCarsTypes }] = useCarTypes()
-  const [{ error: errorDeletingCar }, executeDeleteCars] = useAxios(
-    {
-      method: 'DELETE',
-    },
-    { manual: true },
-  )
+  const { errorDeletingCar, executeDeleteCars } = useDeleteCar()
 
-  function handleDeleteWarning(evnt?: SyntheticEvent) {
-    setShowDeleteCarWarning(true)
-    const carId = carData?.filter(
-      car =>
-        car.name ===
-        evnt?.currentTarget.previousElementSibling?.firstElementChild?.nextSibling?.firstChild
-          ?.textContent,
-    )[0]?.id
-    setSelectedDeleteCarId(carId)
+  useEffect(() => {
+    if (authError) logout?.()
+  }, [loadAuth])
+  function handleDeleteWarning(event?: MouseEvent) {
+    deleteWarning(event, setShowDeleteCarWarning, carData, setSelectedDeleteCarId)
   }
-
   async function deleteCar() {
     setShowDeleteCarWarning(false)
     await executeDeleteCars({
@@ -47,48 +40,62 @@ export default function SeeMyCars() {
       url: `${apiUrl}/cars/${selectedDeleteCarId}`,
     })
     refetchCars()
-    console.info('car was deleted')
   }
 
   useEffect(() => {
-    if (errorDeletingCar) {
-      setShowInfoDialog(true)
-      console.info(errorDeletingCar?.response?.data?.message)
-    }
+    if (errorDeletingCar) setShowInfoDialog(true)
   }, [errorDeletingCar])
 
-  if (error?.status === 400) logout?.()
   useEffect(() => {
-    if (!loadingCarsTypes && !loadingCarData) {
-      const carsInfo = carData?.map(car => {
-        const carImgUrl =
-          carType !== undefined
-            ? carType.filter(type => type.id === car.carTypeId)[0]?.imageUrl
-            : ''
-        return (
-          <div key={car.id}>
-            <AllCarsCard
-              name={car.name}
-              id={car.id}
-              imageUrl={carImgUrl !== '' ? carImgUrl : ''}
-              imageAltText={carImgUrl === '' ? 'No image found' : 'Car image'}
-              showDeleteBtn={true}
-              type={car.fuelType}
-              owner={car.name}
-              onclick={handleDeleteWarning}
-            />
-          </div>
-        )
+    if (!loadingCarsTypes && !loadingCarData && carData && carType) {
+      const formatted = carData.filter(car => {
+        if (userData?.id === car.ownerId) {
+          return {
+            id: car.id,
+            name: car.name,
+            ownerId: car.ownerId,
+            carTypeName: car?.name,
+            licensePlate: car.licensePlate,
+            horsepower: car.horsepower,
+            fuelType: car.fuelType,
+            state: car.state,
+            type: car.fuelType,
+            imageAltText: car.name,
+          }
+        }
       })
-      if (carsInfo?.length) {
-        setCars(carsInfo)
-      }
+      setCars(formatted)
     }
   }, [carData, carType])
+
+  function handleSeeDetails(car: CarDto) {
+    navigate(`${car.id}`, {
+      state: { car, imageUrl: carType && carType.find(t => t.id === car.carTypeId)?.imageUrl },
+    })
+  }
+
   return (
-    <AuthenticatedContainer>
-      <PageHeading name="See my car" />
-      {loadingCarData ? <h1>Loading Cars....</h1> : cars}
+    <PageContainer>
+      <PageHeading name="See My Cars" />
+      {loadingCarData ? (
+        <h1>Loading Cars....</h1>
+      ) : cars.length ? (
+        <div className="space-y-6">
+          {cars.map(car => (
+            <AllCarsCard
+              key={car.id}
+              {...car}
+              imageUrl={carType && carType.find(t => t.id === car.carTypeId)?.imageUrl}
+              onclick={handleDeleteWarning}
+              onSeeDetails={() => handleSeeDetails(car)}
+              btnTitle="Delete"
+            />
+          ))}
+        </div>
+      ) : (
+        <p>No car found. Reload the page to try again</p>
+      )}
+
       {showDeleteWarning && (
         <WarnUserDialog
           deleteWarning={showDeleteWarning}
@@ -100,9 +107,9 @@ export default function SeeMyCars() {
         <InformUserDialog
           showDialog={showInfoDialog}
           onclose={() => setShowInfoDialog(false)}
-          message={errorDeletingCar?.response?.data?.message}
+          message="The car was not deleted, please try again."
         />
       )}
-    </AuthenticatedContainer>
+    </PageContainer>
   )
 }

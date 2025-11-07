@@ -1,5 +1,5 @@
 interface DetailItemProps {
-  title: string
+  title: string | number
   icon?: React.ReactNode
   img?: string
 }
@@ -13,9 +13,7 @@ export default function MyCarDetailsItem({ title, icon, img }: DetailItemProps) 
   return (
     <div className="flex items-center gap-2">
       {icon && icon}
-      {img && (
-        <img src={img} alt={title} className="inline-block h-[20px] w-[18px] object-contain" />
-      )}
+      {img && <img src={img} className="inline-block h-[20px] w-[18px] object-contain" />}
       <span>{title}</span>
     </div>
   )

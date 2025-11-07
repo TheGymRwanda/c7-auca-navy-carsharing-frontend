@@ -1,18 +1,21 @@
-import { useContext } from 'react'
-import { useUser } from '@/hooks'
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { useContext, useEffect } from 'react'
+import useAuth from '@/hooks/useAuth'
 
-import AuthenticatedContainer from '@/components/container/AuthenticatedContainer'
+import PageContainer from '@/components/container/PageContainer'
 import PageHeading from '@/components/ui/PageHeading'
+import { AuthContext } from '@/context/AuthenticationContext'
 
 export default function ManageBookings() {
-  const { logout, userId } = useContext(AuthContext)
-  const [{ error }] = useUser(userId)
-
-  if (error?.status === 400) logout?.()
+  const { logout } = useContext(AuthContext)
+  const [{ error: authError, loading: loadAuth }] = useAuth()
+  useEffect(() => {
+    if (authError) {
+      logout?.()
+    }
+  }, [loadAuth])
   return (
-    <AuthenticatedContainer>
+    <PageContainer>
       <PageHeading name="Manage Bookings" />
-    </AuthenticatedContainer>
+    </PageContainer>
   )
 }
