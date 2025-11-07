@@ -1,6 +1,6 @@
 import CarInputs from './CarInputs'
 import ErrorMessage from './ErrorMessage'
-import NewCarType from '../types/NewCarType'
+import NewCarType from '../../types/NewCarType'
 
 interface HorsePowerLicensePlateProps {
   licensePlate: string

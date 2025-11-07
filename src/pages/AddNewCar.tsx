@@ -5,8 +5,8 @@ import { AuthContext } from '@/context/LoggedInAuthContext'
 
 import AuthenticatedContainer from '@/components/container/AuthenticatedContainer'
 import PageHeading from '@/components/ui/PageHeading'
-import '@/components/NewCarForm'
-import NewCarForm from '@/components/NewCarForm'
+import '@/components/NewCar/NewCarForm'
+import NewCarForm from '@/components/NewCar/NewCarForm'
 
 export default function AddNewCar() {
   const { logout, userId } = useContext(AuthContext)

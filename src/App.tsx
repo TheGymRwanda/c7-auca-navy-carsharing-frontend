@@ -17,7 +17,7 @@ import ShowAllCars from '@/pages/ShowAllCars'
 import Error from '@/pages/Error'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
-import '@/components/NewCarForm.tsx'
+import '@/components/NewCar/NewCarForm'
 
 // Configure axios hooks
 configure({
