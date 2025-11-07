@@ -65,7 +65,6 @@ export default function SeeMyCars() {
         }
       })
       setCars(formatted)
-      console.info(formatted)
     }
   }, [carData, carType])
 

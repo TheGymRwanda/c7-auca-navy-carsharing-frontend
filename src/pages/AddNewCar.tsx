@@ -9,10 +9,12 @@ import Button from '@/components/ui/Button'
 import { AppRoutes } from '@/types/AppRoutesType'
 import useAddNewCar from '@/hooks/useAddNewCar'
 import InformUserDialog from '@/components/ui/InformUserDialog'
+import { useNavigate } from 'react-router-dom'
 
 export default function AddNewCar() {
   const { logout } = useContext(AuthContext)
   const [showInfoDialog, setShowInfoDialog] = useState(true)
+  const navigate = useNavigate()
   const [{ error: authError, loading: loadAuth }] = useAuth()
   const { handleAddNewCar, loadingAddNewCar, errorAddingNewCar, addedNewCarSuccessfully } =
     useAddNewCar()
@@ -85,7 +87,7 @@ export default function AddNewCar() {
           showDialog={showInfoDialog}
           onclose={() => {
             setShowInfoDialog(false)
-            window.location.reload()
+            navigate(AppRoutes.seeMyCars)
           }}
           message="The new car was added successfully"
         />
