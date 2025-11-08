@@ -10,6 +10,7 @@ export default function AllCarsCard({
   type,
   horsepower,
   onclick,
+  onClickImage,
   imageAltText,
   onSeeDetails,
   btnTitle,
@@ -17,7 +18,12 @@ export default function AllCarsCard({
   return (
     <div className="rounded-lg bg-[#3e7591] px-4 py-2">
       <div className="flex h-56 w-full justify-center rounded-[10px]">
-        <img src={imageUrl} alt={imageAltText} className="h-full w-auto rounded-md" />
+        <img
+          src={imageUrl}
+          alt={imageAltText}
+          className="h-full w-auto rounded-md"
+          onClick={onClickImage}
+        />
         <div className="flex h-full flex-col justify-around px-4">
           <h1 className="text-start text-2xl font-bold text-white">{name}</h1>
           <MyCarDetailsItem title={type} icon={<CarIcon />} />

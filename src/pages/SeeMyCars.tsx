@@ -13,6 +13,8 @@ import { deleteWarning } from '@/util/seeMyCars'
 import useAuth from '@/hooks/useAuth'
 import { useDeleteCar } from '@/hooks/useDeleteCar'
 import { CarDto } from '@/util/api'
+import Button from '@/components/ui/Button'
+import { AppRoutes } from '@/types/AppRoutesType'
 
 export default function SeeMyCars() {
   const [cars, setCars] = useState<CarDto[]>([])
@@ -45,7 +47,6 @@ export default function SeeMyCars() {
   useEffect(() => {
     if (errorDeletingCar) setShowInfoDialog(true)
   }, [errorDeletingCar])
-
   useEffect(() => {
     if (!loadingCarsTypes && !loadingCarData && carData && carType) {
       const formatted = carData.filter(car => {
@@ -86,6 +87,7 @@ export default function SeeMyCars() {
               key={car.id}
               {...car}
               imageUrl={carType && carType.find(t => t.id === car.carTypeId)?.imageUrl}
+              onClickImage={() => handleSeeDetails(car)}
               onclick={handleDeleteWarning}
               onSeeDetails={() => handleSeeDetails(car)}
               btnTitle="Delete"
@@ -95,7 +97,7 @@ export default function SeeMyCars() {
       ) : (
         <p>No car found. Reload the page to try again</p>
       )}
-
+      <Button title="Add new Car" variant="filled" to={AppRoutes.addNewCars} />
       {showDeleteWarning && (
         <WarnUserDialog
           deleteWarning={showDeleteWarning}
