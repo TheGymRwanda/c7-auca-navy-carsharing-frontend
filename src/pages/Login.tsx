@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 import { AppRoutes } from '@/types/AppRoutesType'
 
 import Button from '@/components/ui/Button'
@@ -9,18 +9,18 @@ import Hero from '@/components/ui/Hero'
 import AuthInputs from '@/components/ui/AuthInputs'
 import KeyIcon from '@/assets/KeyIcon'
 import ProfileIcon from '@/assets/ProfileIcon'
-import UnauthenticatedContainer from '@/components/container/UnauthenticatedContainer'
+import PageContainer from '@/components/container/PageContainer'
 
 export default function Login() {
   const { login, loadingAuth, loggedIn, errorLogin } = useContext(AuthContext)
   const navigate = useNavigate()
   useEffect(() => {
     if (loggedIn) {
-      navigate(AppRoutes.home)
+      return navigate(AppRoutes.home)
     }
-  }, [loadingAuth])
+  }, [loggedIn])
   return (
-    <UnauthenticatedContainer>
+    <PageContainer>
       <Hero />
       <p className="pt-8 text-2xl">Log in</p>
       <form onSubmit={login}>
@@ -52,6 +52,6 @@ export default function Login() {
           className="mt-12"
         />
       </form>
-    </UnauthenticatedContainer>
+    </PageContainer>
   )
 }

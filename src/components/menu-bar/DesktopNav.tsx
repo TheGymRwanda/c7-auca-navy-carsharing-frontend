@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 import { AppRoutes } from '@/types/AppRoutesType'
 
 export default function DesktopNav() {

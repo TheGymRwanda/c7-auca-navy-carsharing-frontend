@@ -1,10 +1,10 @@
-import { createContext, useState, PropsWithChildren, SyntheticEvent, useEffect } from 'react'
+import { createContext, useState, useEffect, FormEvent } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 import useAxios from 'axios-hooks'
 
 import { AppRoutes } from '@/types/AppRoutesType'
-import { AuthContextType } from '@/types/AuthTypes'
+import { AuthContextType, AuthContextChildren } from '@/types/AuthTypes'
 import { apiUrl } from '@/util/apiUrl'
 
 export const AuthContext = createContext<AuthContextType>({
@@ -13,10 +13,9 @@ export const AuthContext = createContext<AuthContextType>({
   logout: () => {},
   loadingAuth: false,
   errorLogin: false,
-  userId: 17,
 })
 
-export default function LoggedInAuthContext({ children }: PropsWithChildren) {
+export default function AuthenticationContext({ children }: AuthContextChildren) {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null,
   )
@@ -28,14 +27,15 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
     },
     { manual: true },
   )
-  const [userId, setUserId] = useState(17)
+
   const navigate = useNavigate()
 
-  const login = (event: SyntheticEvent<HTMLFormElement>) => {
+  const login = (event: FormEvent) => {
     event.preventDefault()
-    const form = event.currentTarget
-    const userNameOrEmail = form.userNameOrEmail.value
-    const userPassword = form.password.value
+    const formElement = event.target as HTMLFormElement
+    const formData = new FormData(formElement)
+    const userNameOrEmail = formData.get('userNameOrEmail')
+    const userPassword = formData.get('password')
     auth({
       data: {
         username: userNameOrEmail,
@@ -53,7 +53,6 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
       setLoggedIn(
         localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null,
       )
-      setUserId(data?.userId)
     }
   }, [data, error])
   const logout = () => {
@@ -64,7 +63,7 @@ export default function LoggedInAuthContext({ children }: PropsWithChildren) {
   const loadingAuth = loading
 
   return (
-    <AuthContext.Provider value={{ loggedIn, login, loadingAuth, logout, errorLogin, userId }}>
+    <AuthContext.Provider value={{ loggedIn, login, loadingAuth, logout, errorLogin }}>
       {children}
     </AuthContext.Provider>
   )
