@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
 import clsx from 'clsx'
-
 import { ButtonProps } from '@/types/ButtonTypes'
 
 const Button = ({
@@ -10,7 +9,8 @@ const Button = ({
   variant = 'outlined',
   onClick,
   className = '',
-  type = undefined,
+  type = 'button',
+  children,
 }: ButtonProps) => {
   const baseClasses =
     'w-5/6 md:w-2/3 lg:w-1/2 mx-auto rounded-full border-2 py-2 text-lg font-semibold text-center transition-all duration-300'
@@ -23,14 +23,16 @@ const Button = ({
     'border-gray-200 bg-gray-200 text-cyan-800 cursor-not-allowed': disabled,
   })
 
+  const content = children || title
+
   if (to) {
     return (
       <NavLink
         to={to}
         onClick={onClick}
-        className={clsx(baseClasses, variantClasses, type, className)}
+        className={clsx(baseClasses, variantClasses, className)}
       >
-        {title}
+        {content}
       </NavLink>
     )
   }
@@ -39,10 +41,10 @@ const Button = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={clsx(baseClasses, variantClasses, className)}
       type={type}
+      className={clsx(baseClasses, variantClasses, className)}
     >
-      {title}
+      {content}
     </button>
   )
 }
