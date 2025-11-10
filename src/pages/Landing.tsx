@@ -1,7 +1,8 @@
-import Button from '@/components/ui/Button'
 import { AppRoutes } from '@/types/AppRoutesType'
+
+import Button from '@/components/ui/Button'
 import Hero from '@/components/ui/Hero'
-import PageContainer from '@/components/ui/PageContainer'
+import PageContainer from '@/components/container/PageContainer'
 
 export default function Landing() {
   return (

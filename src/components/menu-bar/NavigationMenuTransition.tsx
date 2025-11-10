@@ -1,9 +1,8 @@
 import { Fragment } from 'react'
 import { Transition } from '@headlessui/react'
+import { Children } from '@/types/GeneralTypes'
 
-import { BaseComponentsProp } from '@/types/base'
-
-export default function NavigationMenuTransition({ children }: BaseComponentsProp) {
+export default function NavigationMenuTransition({ children }: Children) {
   return (
     <Transition
       as={Fragment}

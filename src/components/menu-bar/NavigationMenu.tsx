@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Menu, MenuButton, MenuItems } from '@headlessui/react'
 
 import { AppRoutes } from '@/types/AppRoutesType'
-import { AuthContext } from '@/context/LoggedInAuthContext'
+import { AuthContext } from '@/context/AuthenticationContext'
 import NavigationMenuTransition from '@/components/menu-bar/NavigationMenuTransition'
 import MenuLink from '@/components/menu-bar/MenuLink'
 import CarIcon from '@/assets/CarIcon'
@@ -32,7 +32,7 @@ export default function NavigationMenu() {
             <MenuLink route={AppRoutes.addNewCars} icon={<CarPlusIcon />} name="Add New Car" />
             <div className="my-2 border-t"></div>
             <MenuLink
-              route={AppRoutes.landing}
+              route={AppRoutes.login}
               icon={<LogoutIcon />}
               name="Logout"
               onclick={logout}
